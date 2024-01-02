@@ -1,5 +1,7 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
-from keyboards.inline.data import StartData, AndijonData, BuxoroData, FargonaData, JizzaxData, NamanganData, NavoiyData, QashqadaryoData, QoraqalpoqData, SamarqandData, SirdaryoData, SurxondaryoData, toshkentshData, toshkentvilData, XorazmData
+from keyboards.inline.data import StartData, AndijonData, BuxoroData, FargonaData, JizzaxData, \
+    NamanganData, NavoiyData, QashqadaryoData, QoraqalpoqData, SamarqandData, SirdaryoData, \
+    SurxondaryoData, toshkentshData, toshkentvilData, XorazmData
 
 
 allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
@@ -10,16 +12,16 @@ allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                               [InlineKeyboardButton(text="Андижон", callback_data=AndijonData(word="andijon").pack()),
                                                InlineKeyboardButton(text="Наманган", callback_data=NamanganData(word="namangan").pack())],
                                               [InlineKeyboardButton(text="Фарғона", callback_data=FargonaData(word="fargona").pack()),
-                                               InlineKeyboardButton(text="Самарқанд", callback_data=toshkentshData(word="toshkent").pack())],
-                                              [InlineKeyboardButton(text="Бухоро", callback_data=toshkentshData(word="toshkent").pack()),
-                                               InlineKeyboardButton(text="Сирдарё", callback_data=toshkentshData(word="toshkent").pack())],
-                                              [InlineKeyboardButton(text="Қашқадарё", callback_data=toshkentshData(word="toshkent").pack()),
-                                               InlineKeyboardButton(text="Сурхoндарё", callback_data=toshkentshData(word="toshkent").pack())],
-                                              [InlineKeyboardButton(text="Навоий", callback_data=toshkentshData(word="toshkent").pack()),
-                                               InlineKeyboardButton(text="Жиззах", callback_data=toshkentshData(word="toshkent").pack())],
-                                              [InlineKeyboardButton(text="Хоразм", callback_data=toshkentshData(word="toshkent").pack()),
+                                               InlineKeyboardButton(text="Самарқанд", callback_data=SamarqandData(word="samarqand").pack())],
+                                              [InlineKeyboardButton(text="Бухоро", callback_data=BuxoroData(word="buxoro").pack()),
+                                               InlineKeyboardButton(text="Сирдарё", callback_data=SirdaryoData(word="sirdaryo").pack())],
+                                              [InlineKeyboardButton(text="Қашқадарё", callback_data=QashqadaryoData(word="qashqa").pack()),
+                                               InlineKeyboardButton(text="Сурхoндарё", callback_data=SurxondaryoData(word="surxon").pack())],
+                                              [InlineKeyboardButton(text="Навоий", callback_data=NavoiyData(word="navoiy").pack()),
+                                               InlineKeyboardButton(text="Жиззах", callback_data=JizzaxData(word="jizzax").pack())],
+                                              [InlineKeyboardButton(text="Хоразм", callback_data=XorazmData(word="xorazm").pack()),
                                                InlineKeyboardButton(text="Қорақалпоғистон",
-                                                                    callback_data=toshkentshData(word="toshkent").pack())],
+                                                                    callback_data=QoraqalpoqData(word="qora").pack())],
                                           ])
 
 toshkentShHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,

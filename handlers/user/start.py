@@ -1,20 +1,12 @@
-from typing import NoReturn
-
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.filters import CommandStart
 
-from keyboards.default.JobButton import button
 from keyboards.inline.HomeButton import start_button, allRegionsKvartira
 
 from aiogram.fsm.context import FSMContext
-from aiogram.methods.delete_message import DeleteMessage
-from aiogram.methods.pin_chat_message import PinChatMessage
 
 from aiogram.types.callback_query import CallbackQuery
-
-from aiogram.enums.chat_type import ChatType
-
 from aiogram.fsm.state import any_state
 
 from loader import bot
