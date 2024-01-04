@@ -36,7 +36,7 @@ mode = "Markdown"
 
 sirdaryo_kv_router = Router()
 
-@sirdaryo_kv_router.callback_query(SirdaryoKvartiraData.filter(F.word=="sirdaryokv"))
+@sirdaryo_kv_router.callback_query(SirdaryoKvartiraData.filter(F.word=="sirdayokv"))
 async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: SirdaryoKvartiraData):
     await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
