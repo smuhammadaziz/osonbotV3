@@ -323,7 +323,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.svet)
+    await state.set_state(AndijonHomeSotishHovli.suv)
 
 # ============================================================================
 

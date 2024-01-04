@@ -3,7 +3,20 @@ from keyboards.inline.data import StartData, AndijonData, BuxoroData, FargonaDat
     NamanganData, NavoiyData, QashqadaryoData, QoraqalpoqData, SamarqandData, SirdaryoData, \
     SurxondaryoData, toshkentshData, toshkentvilData, XorazmData
 
-from keyboards.inline.data import AndijonHovliData
+from keyboards.inline.data import AndijonHovliData, BuxoroHovliData, FargonaHovliData, JizzaxHovliData, \
+    NamanganHovliData, NavoiyHovliData, QashqaHovliData, QoraqalpoqHovliData, SamarqandHovliData, \
+    SirdaryoHovliData, SurxonHovliData, ToshketnShHovliData, ToshkentVilHovliData, XorazmHovliData
+
+from keyboards.inline.data import AndijonKvartiraData, BuxoroKvartiraData, FargonaKvartiraData, \
+    JizzaxKvartiraData, NamanganKvartiraData, NavoiyKvartiraData, QashqaKvartiraData, \
+    QoraqalpoqKvartiraData, SamarqandKvartiraData, SirdaryoKvartiraData, SurxonKvartiraData, \
+    ToshketnShKvartiraData, ToshkentVilKvartiraData, XorazmKvartiraData
+
+from keyboards.inline.data import AndijonYerData, BuxoroYerData, FargonaYerData, \
+    JizzaxYerData, NamanganYerData, NavoiyYerData, QashqaYerData, \
+    QoraqalpoqYerData, SamarqandYerData, SirdaryoYerData, SurxonYerData, \
+    ToshketnShYerData, ToshkentVilYerData, XorazmYerData
+
 from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
 from keyboards.inline.data import MavjudData, JihozlarsizData
@@ -33,108 +46,113 @@ allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 
 toshkentShHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
-                                          [InlineKeyboardButton(text="Квартира", callback_data="toshshkv"),
-                                           InlineKeyboardButton(text="Ховли Участка", callback_data="toshshhovli")],
-                                          [InlineKeyboardButton(text="Қуруқ Ер", callback_data="toshshyer")],
+                                          [InlineKeyboardButton(text="Квартира", callback_data=ToshketnShKvartiraData(word="toshshkv").pack()),
+                                           InlineKeyboardButton(text="Ховли Участка", callback_data=ToshketnShHovliData(word="toshshhovli").pack())],
+                                          [InlineKeyboardButton(text="Қуруқ Ер", callback_data=ToshketnShYerData(word="toshshyer").pack())],
                                           [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                       ])
 
 toshkentVilHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                        inline_keyboard=[
-                                           [InlineKeyboardButton(text="Квартира", callback_data="toshvilkv"),
-                                            InlineKeyboardButton(text="Ховли Участка", callback_data="toshvilhovli")],
-                                           [InlineKeyboardButton(text="Қуруқ Ер", callback_data="toshvilyer")],
+                                           [InlineKeyboardButton(text="Квартира", callback_data=ToshkentVilKvartiraData(word="toshvilkv").pack()),
+                                            InlineKeyboardButton(text="Ховли Участка", callback_data=ToshkentVilHovliData(word="toshvilhovli").pack())],
+                                           [InlineKeyboardButton(text="Қуруқ Ер", callback_data=ToshkentVilYerData(word="toshvilyer").pack())],
                                            [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                        ])
 
 andijonHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                    inline_keyboard=[
-                                       [InlineKeyboardButton(text="Квартира", callback_data="andijonkv"),
+                                       [InlineKeyboardButton(text="Квартира", callback_data=AndijonKvartiraData(word="andijonkv").pack()),
                                         InlineKeyboardButton(text="Ховли Участка", callback_data=AndijonHovliData(word="andijonhovli").pack())],
-                                       [InlineKeyboardButton(text="Қуруқ Ер", callback_data="andijonyer")],
+                                       [InlineKeyboardButton(text="Қуруқ Ер", callback_data=AndijonYerData(word="andijonyer").pack())],
                                        [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                    ])
 
 namanganHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                     inline_keyboard=[
-                                        [InlineKeyboardButton(text="Квартира", callback_data="namangankv"),
-                                         InlineKeyboardButton(text="Ховли Участка", callback_data="namanganhovli")],
-                                        [InlineKeyboardButton(text="Қуруқ Ер", callback_data="namanganyer")],
+                                        [InlineKeyboardButton(text="Квартира", callback_data=NamanganKvartiraData(word="namangankv").pack()),
+                                         InlineKeyboardButton(text="Ховли Участка", callback_data=NamanganHovliData(word="namanganhovli").pack())],
+                                        [InlineKeyboardButton(text="Қуруқ Ер", callback_data=NamanganYerData(word="namanganyer").pack())],
                                         [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                     ])
 
 fargonaHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                    inline_keyboard=[
-                                       [InlineKeyboardButton(text="Квартира", callback_data="fargonakv"),
-                                        InlineKeyboardButton(text="Ховли Участка", callback_data="fargonahovli")],
-                                       [InlineKeyboardButton(text="Қуруқ Ер", callback_data="fargonayer")],
+                                       [InlineKeyboardButton(text="Квартира", callback_data=FargonaKvartiraData(word="fargonakv").pack()),
+                                        InlineKeyboardButton(text="Ховли Участка", callback_data=FargonaHovliData(word="fargonahovli").pack())],
+                                       [InlineKeyboardButton(text="Қуруқ Ер", callback_data=FargonaYerData(word="fargonayer").pack())],
                                        [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                    ])
 
 samarqandHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                      inline_keyboard=[
-                                         [InlineKeyboardButton(text="Квартира", callback_data="samarqandkv"),
-                                          InlineKeyboardButton(text="Ховли Участка", callback_data="samarqandhovli")],
-                                         [InlineKeyboardButton(text="Қуруқ Ер", callback_data="samarqandyer")],
+                                         [InlineKeyboardButton(text="Квартира", callback_data=SamarqandKvartiraData(word="samarqandkv").pack()),
+                                          InlineKeyboardButton(text="Ховли Участка", callback_data=SamarqandHovliData(word="samarqandhovli").pack())],
+                                         [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SamarqandYerData(word="samarqandyer").pack())],
                                          [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                      ])
 
 buxoroHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                   inline_keyboard=[
-                                      [InlineKeyboardButton(text="Квартира", callback_data="buxorokv"),
-                                       InlineKeyboardButton(text="Ховли Участка", callback_data="buxorohovli")],
-                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data="buxoroyer")],
+                                      [InlineKeyboardButton(text="Квартира", callback_data=BuxoroKvartiraData(word="buxorokv").pack()),
+                                       InlineKeyboardButton(text="Ховли Участка", callback_data=BuxoroHovliData(word="buxorohovli").pack())],
+                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data=BuxoroYerData(word="buxoroyer").pack())],
                                       [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                   ])
 
 sirdaryoHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                     inline_keyboard=[
-                                        [InlineKeyboardButton(text="Квартира", callback_data="sirdaryokv"),
-                                         InlineKeyboardButton(text="Ховли Участка", callback_data="sirdaryohovli")],
-                                        [InlineKeyboardButton(text="Қуруқ Ер", callback_data="sirdaryoyer")],
+                                        [InlineKeyboardButton(text="Квартира", callback_data=SirdaryoKvartiraData(word="sirdayokv").pack()),
+                                         InlineKeyboardButton(text="Ховли Участка", callback_data=SirdaryoHovliData(word="sirdaryohovli").pack())],
+                                        [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SirdaryoYerData(word="sirdaryoyer").pack())],
                                         [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                     ])
+
 qashqadaryoHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                        inline_keyboard=[
-                                           [InlineKeyboardButton(text="Квартира", callback_data="qashqadaryokv"),
-                                            InlineKeyboardButton(text="Ховли Участка",
-                                                                 callback_data="qashqadaryohovli")],
-                                           [InlineKeyboardButton(text="Қуруқ Ер", callback_data="qashqadaryoyer")],
+                                           [InlineKeyboardButton(text="Квартира", callback_data=QashqaKvartiraData(word="qashqakv").pack()),
+                                            InlineKeyboardButton(text="Ховли Участка", callback_data=QashqaHovliData(word="qashqadaryohovli").pack())],
+                                           [InlineKeyboardButton(text="Қуруқ Ер", callback_data=QashqaYerData(word="qashqayer").pack())],
                                            [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                        ])
+
 surxonHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                   inline_keyboard=[
-                                      [InlineKeyboardButton(text="Квартира", callback_data="surxonkv"),
-                                       InlineKeyboardButton(text="Ховли Участка", callback_data="surxonhovli")],
-                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data="surxonyer")],
+                                      [InlineKeyboardButton(text="Квартира", callback_data=SurxonKvartiraData(word="surxonkv").pack()),
+                                       InlineKeyboardButton(text="Ховли Участка", callback_data=SurxonHovliData(word="surxonhovli").pack())],
+                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SurxonYerData(word="surxonyer").pack())],
                                       [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                   ])
+
 navoiyHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                   inline_keyboard=[
-                                      [InlineKeyboardButton(text="Квартира", callback_data="navoiykv"),
-                                       InlineKeyboardButton(text="Ховли Участка", callback_data="navoiyhovli")],
-                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data="navoiyyer")],
+                                      [InlineKeyboardButton(text="Квартира", callback_data=NavoiyKvartiraData(word="navoiykv").pack()),
+                                       InlineKeyboardButton(text="Ховли Участка", callback_data=NavoiyHovliData(word="navoiyhovli").pack())],
+                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data=NavoiyYerData(word="navoiyyer").pack())],
                                       [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                   ])
+
 jizzaxHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                   inline_keyboard=[
-                                      [InlineKeyboardButton(text="Квартира", callback_data="jizzaxkv"),
-                                       InlineKeyboardButton(text="Ховли Участка", callback_data="jizzaxhovli")],
-                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data="jizzaxyer")],
+                                      [InlineKeyboardButton(text="Квартира", callback_data=JizzaxKvartiraData(word="jizzaxkv").pack()),
+                                       InlineKeyboardButton(text="Ховли Участка", callback_data=JizzaxHovliData(word="jizzaxhovli").pack())],
+                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data=JizzaxYerData(word="jizzaxyer").pack())],
                                       [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                   ])
+
 xorazmHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                   inline_keyboard=[
-                                      [InlineKeyboardButton(text="Квартира", callback_data="xorazmkv"),
-                                       InlineKeyboardButton(text="Ховли Участка", callback_data="xorazmhovli")],
-                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data="xorazmyer")],
+                                      [InlineKeyboardButton(text="Квартира", callback_data=XorazmKvartiraData(word="xorazmkv").pack()),
+                                       InlineKeyboardButton(text="Ховли Участка", callback_data=XorazmHovliData(word="xorazmhovli").pack())],
+                                      [InlineKeyboardButton(text="Қуруқ Ер", callback_data=XorazmYerData(word="xorazmyer").pack())],
                                       [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                   ])
+
 qoraqalpoqHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
-                                          [InlineKeyboardButton(text="Квартира", callback_data="qoraqalpoqkv"),
-                                           InlineKeyboardButton(text="Ховли Участка", callback_data="qoraqalpoqhovli")],
-                                          [InlineKeyboardButton(text="Қуруқ Ер", callback_data="qoraqalpoqyer")],
+                                          [InlineKeyboardButton(text="Квартира", callback_data=QoraqalpoqKvartiraData(word="qoraqalpoqkv").pack()),
+                                           InlineKeyboardButton(text="Ховли Участка", callback_data=QoraqalpoqHovliData(word="qoraqalpoqhovli").pack())],
+                                          [InlineKeyboardButton(text="Қуруқ Ер", callback_data=QoraqalpoqYerData(word="qoraqalpoqyer").pack())],
                                           [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                       ])
 
