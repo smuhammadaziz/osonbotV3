@@ -25,19 +25,19 @@ telraqam2yoz = "Зарур бўлса 2-рақамни киритинг,  \n\n  
 
 
 andijonregion = "#Андижон__Вилояти \n"
-buxororegion = ""
-fargonaregion = ""
-jizzaxregion = ""
-namanganregion = ""
-navoiyregion = ""
-qashqadaryoregion = ""
-qoraqalpoqregion = ""
-samarqandregion = ""
-sirdaryoregion = ""
-surxondaryoregion = ""
-toshkentshregion = ""
-toshkentvilregion = ""
-xorazmregion = ""
+buxororegion = "#Бухоро__Вилояти \n"
+fargonaregion = "#Фарғона__Вилояти \n"
+jizzaxregion = "#Жиззах__Вилояти \n"
+namanganregion = "#Наманган__Вилояти \n"
+navoiyregion = "#Навоий__Вилояти \n"
+qashqadaryoregion = "#Қашқадарё__Вилояти \n"
+qoraqalpoqregion = "#Қорақалпоғистон \n"
+samarqandregion = "#Самарқанд__Вилояти \n"
+sirdaryoregion = "#Сирдарё__Вилояти \n"
+surxondaryoregion = "#Сурхондарё__Вилояти \n"
+toshkentshregion = "#Тошкент__Шаҳар \n"
+toshkentvilregion = "#Тошкент__Вилояти \n"
+xorazmregion = "#Хоразм__Вилояти \n"
 
 
 
