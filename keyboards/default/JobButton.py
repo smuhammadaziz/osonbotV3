@@ -5,7 +5,7 @@ button = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                  [KeyboardButton(text="УЙ-ЖОЙ БОЗОРИ")],
                              ])
 
-start = ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, one_time_keyboard=True,
+start = ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, one_time_keyboard=True, is_persistent=True,
                              keyboard=[
                                  [KeyboardButton(text="START")],
                              ])

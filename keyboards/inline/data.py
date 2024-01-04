@@ -3,6 +3,9 @@ from aiogram.filters.callback_data import CallbackData
 class StartData(CallbackData, prefix="oson"):
     word: str
 
+# =========================================================
+# =========================================================
+
 class AndijonData(CallbackData, prefix="Andijon"):
     word: str
 
@@ -45,7 +48,50 @@ class toshkentvilData(CallbackData, prefix="toshkentvil"):
 class XorazmData(CallbackData, prefix="Xorazm"):
     word: str
 
+# =========================================================
+# =========================================================
 
+class AndijonHovliData(CallbackData, prefix="Andijon"):
+    word: str
 
-
+# =========================================================
+# =========================================================
     
+class YoqData(CallbackData, prefix="yoq"):
+    word: str
+
+class BorData(CallbackData, prefix="bor"):
+    word: str
+
+# =========================================================
+# =========================================================
+    
+class YevroremontData(CallbackData, prefix="evroremont"):
+    word: str
+
+class TamirlangantData(CallbackData, prefix="tamirlangan"):
+    word: str
+
+class OrtachaData(CallbackData, prefix="ortacha"):
+    word: str
+
+class TamirsizData(CallbackData, prefix="tamirsiz"):
+    word: str
+
+# =========================================================
+# =========================================================
+    
+class MavjudData(CallbackData, prefix="mavjud"):
+    word: str
+
+class JihozlarsizData(CallbackData, prefix="jihozlarsiz"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class USDData(CallbackData, prefix="USD"):
+    word: str
+
+class SUMData(CallbackData, prefix="SUM"):
+    word: str

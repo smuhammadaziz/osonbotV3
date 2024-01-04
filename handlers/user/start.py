@@ -9,21 +9,21 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types.callback_query import CallbackQuery
 from aiogram.fsm.state import any_state
 
-from loader import bot
+from loader import bot, dp
 
 from keyboards.inline.data import StartData
 
 user_router = Router()
 
+
 @user_router.message(CommandStart())
 async def bot_start(message: Message):
     pinned_message = await message.answer(text="ЭЪЛОН БЕРИШ", reply_markup=start_button)
 
+    await bot.pin_chat_message(chat_id=message.chat.id, message_id=pinned_message.message_id)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
-    await bot.pin_chat_message(chat_id=message.chat.id, message_id=pinned_message.message_id)
-
-    await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
+    await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")    
 
 
 @user_router.callback_query(StartData.filter(F.word=="start"), any_state)

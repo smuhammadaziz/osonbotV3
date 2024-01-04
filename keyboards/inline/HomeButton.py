@@ -3,6 +3,13 @@ from keyboards.inline.data import StartData, AndijonData, BuxoroData, FargonaDat
     NamanganData, NavoiyData, QashqadaryoData, QoraqalpoqData, SamarqandData, SirdaryoData, \
     SurxondaryoData, toshkentshData, toshkentvilData, XorazmData
 
+from keyboards.inline.data import AndijonHovliData
+from keyboards.inline.data import YoqData, BorData
+from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
+from keyboards.inline.data import MavjudData, JihozlarsizData
+from keyboards.inline.data import USDData, SUMData
+
+
 
 allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                           inline_keyboard=[
@@ -43,7 +50,7 @@ toshkentVilHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 andijonHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                    inline_keyboard=[
                                        [InlineKeyboardButton(text="Квартира", callback_data="andijonkv"),
-                                        InlineKeyboardButton(text="Ховли Участка", callback_data="andijonhovli")],
+                                        InlineKeyboardButton(text="Ховли Участка", callback_data=AndijonHovliData(word="andijonhovli").pack())],
                                        [InlineKeyboardButton(text="Қуруқ Ер", callback_data="andijonyer")],
                                        [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                    ])
@@ -133,62 +140,37 @@ qoraqalpoqHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 
 # =========================================================================================
 
-
-homeTypeRentInline = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
-                                          inline_keyboard=[
-                                              [InlineKeyboardButton(text="Квартира", callback_data="kvartiraijara"),
-                                               InlineKeyboardButton(text="Ховли Участка", callback_data="hovliijara")]
-                                          ])
-
-sellOrRentInline = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
-                                        inline_keyboard=[
-                                            [InlineKeyboardButton(text="Уй Сотиш", callback_data="uysotish"),
-                                             InlineKeyboardButton(text="Ижарага Бериш", callback_data="ijaragaberish")]
-                                        ])
+borYoq = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                              inline_keyboard=[
+                                  [InlineKeyboardButton(text="✅ Бор", callback_data=BorData(word="bor").pack()),
+                                   InlineKeyboardButton(text="❌ Йўқ", callback_data=YoqData(word="yoq").pack())]
+                              ])
 
 remontButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                     inline_keyboard=[
-                                        [InlineKeyboardButton(text="Евроремонт", callback_data="Evroremont")],
-                                        [InlineKeyboardButton(text="Таъмирланган", callback_data="Ta'mirlangan")],
-                                        [InlineKeyboardButton(text="Ўртача", callback_data="O'rtacha")],
-                                        [InlineKeyboardButton(text=" Таъмирсиз", callback_data="Ta'mirsiz")]
+                                        [InlineKeyboardButton(text="Евроремонт", callback_data=YevroremontData(word="yevroremont").pack())],
+                                        [InlineKeyboardButton(text="Таъмирланган", callback_data=TamirlangantData(word="tamirlangan").pack())],
+                                        [InlineKeyboardButton(text="Ўртача", callback_data=OrtachaData(word="ortacha").pack())],
+                                        [InlineKeyboardButton(text=" Таъмирсиз", callback_data=TamirsizData(word="tamirsiz").pack())]
                                     ])
 
 jihozlarButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
-                                          [InlineKeyboardButton(text="Бор", callback_data="Mavjud")],
-                                          [InlineKeyboardButton(text="Йўқ", callback_data="Jihozlarsiz")]
+                                          [InlineKeyboardButton(text="Бор", callback_data=MavjudData(word="mavjud").pack())],
+                                          [InlineKeyboardButton(text="Йўқ", callback_data=JihozlarsizData(word="jihozlarsiz").pack())]
                                       ])
 
 valyutaButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                      inline_keyboard=[
-                                         [InlineKeyboardButton(text="$", callback_data="USD")],
-                                         [InlineKeyboardButton(text="сўм", callback_data="SUM")]
+                                         [InlineKeyboardButton(text="$", callback_data=USDData(word="usd").pack())],
+                                         [InlineKeyboardButton(text="сўм", callback_data=SUMData(word="sum").pack())]
                                      ])
-
-borYoq = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
-                              inline_keyboard=[
-                                  [InlineKeyboardButton(text="✅ Бор", callback_data="bor"),
-                                   InlineKeyboardButton(text="❌ Йўқ", callback_data="yoq")]
-                              ])
 
 documentButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
                                           [InlineKeyboardButton(text="Бор,  қонуний", callback_data="dokumentBor")],
                                           [InlineKeyboardButton(text="Тайёр эмас", callback_data="dokumentYoq")]
                                       ])
-
-regions = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2,
-                              keyboard=[
-                                  [KeyboardButton(text="Тошкент шаҳар"), KeyboardButton(text="Тошкент вилояти")],
-                                  [KeyboardButton(text="Андижон"), KeyboardButton(text="Наманган")],
-                                  [KeyboardButton(text="Фарғона"), KeyboardButton(text="Самарқанд")],
-                                  [KeyboardButton(text="Бухоро"), KeyboardButton(text="Сирдарё")],
-                                  [KeyboardButton(text="Қашқадарё"), KeyboardButton(text="Сурхoндарё")],
-                                  [KeyboardButton(text="Навоий"), KeyboardButton(text="Жиззах")],
-                                  [KeyboardButton(text="Хоразм"), KeyboardButton(text="Қорақалпоғистон")],
-                                  [KeyboardButton(text="⬅️ Ортга")],
-                              ])
 
 link_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                    inline_keyboard=[

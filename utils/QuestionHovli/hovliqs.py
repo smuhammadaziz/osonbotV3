@@ -1,5 +1,5 @@
 # Hovli Questions
-channel_id = -1001354536408
+channel_id = -1001747207701
 
 hovlitanlandi = "Hovli tanlandi"
 rasmlar = "<b> Расмларни жойлаш (2 - 10  тагача) </b>"
@@ -24,15 +24,32 @@ telraqam1yoz = "Телефон рақамини ёзинг: "
 telraqam2yoz = "Зарур бўлса 2-рақамни киритинг,  \n\n  ёки 'Кейингиси'  тугмасини босинг"
 
 
-data1 = "#Андижон__Вилояти \n"
+andijonregion = "#Андижон__Вилояти \n"
+buxororegion = ""
+fargonaregion = ""
+jizzaxregion = ""
+namanganregion = ""
+navoiyregion = ""
+qashqadaryoregion = ""
+qoraqalpoqregion = ""
+samarqandregion = ""
+sirdaryoregion = ""
+surxondaryoregion = ""
+toshkentshregion = ""
+toshkentvilregion = ""
+xorazmregion = ""
+
+
+
+
 data2 = "#Ҳовли_Уй__Сотилади \n\n"
 
 check_text = "Маълумотлар тўғрилигини тасдиқласангиз,  эълонни каналга жойланг"
 
 success_text = "✅ Эълон каналга жойланди!"
 
-data30 = "✅ <b>2-</b>Дақиқа ичида эълон беринг  \n\n"
-data31 = "✅ Ўзингиз Админ бўлинг  \n\n"
+# data30 = "✅ <b>2-</b>Дақиқа ичида эълон беринг  \n\n"
+# data31 = "✅ Ўзингиз Админ бўлинг  \n\n"
 data32 = "<b>✅ Эълон Бериш БЕПУЛ❗️  \n\n</b>"
 data33 = "       ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻\n"
 data34 = "    │<a href='https://t.me/OsonBozorBot'><b>    ЭЪЛОН БЕРИШ    </b></a>│\n"
