@@ -12,18 +12,18 @@ from keyboards.default.JobButton import checkbtn, start
 from keyboards.default.JobButton import otkazishButton
 from keyboards.inline.HomeButton import remontButton, jihozlarButton, valyutaButton, borYoq
 from loader import bot
-from states.HovliState.AndijonState import AndijonHomeSotishHovli
+from states.HovliState.ToshShState import ToshkentShHomeSotishHovli
 
 from transliterate import to_cyrillic
 
 from utils.QuestionHovli.hovliqs import hovlitanlandi, rasmlar, umumiyMaydonyoz, faqatRaqamyoz, gazyoz, \
     jihozlaryoz, kanalizatsiyayoz, manzilyoz, moljalyoz, narxiyoz, nechaQavatyoz,oshxonayoz, \
     qoshimchaMalumotyoz, remontyoz, suvyoz, svetyoz, telraqam1yoz, telraqam2yoz, valyutayoz, \
-    xammomyoz, xonalaryoz, channel_id, check_text, andijonregion, data2, data32, data33, \
+    xammomyoz, xonalaryoz, channel_id, check_text, toshkentshregion, data2, data32, data33, \
     data34, data35, success_text
 
 
-from keyboards.inline.data import AndijonHovliData
+from keyboards.inline.data import ToshketnShHovliData
 
 from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
@@ -34,18 +34,18 @@ from keyboards.inline.data import USDData, SUMData
 mode = "Markdown"
 
 
-andijon_router = Router()
+toshsh_router = Router()
 
-@andijon_router.callback_query(AndijonHovliData.filter(F.word=="andijonhovli"))
-async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: AndijonHovliData):
+@toshsh_router.callback_query(ToshketnShHovliData.filter(F.word=="toshshhovli"))
+async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: ToshketnShHovliData):
     await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
 
-    await state.set_state(AndijonHomeSotishHovli.images)
+    await state.set_state(ToshkentShHomeSotishHovli.images)
 
 
 
-# @andijon_router.message(AndijonHomeSotishHovli.images)
+# @toshsh_router.message(ToshkentShHomeSotishHovli.images)
 # async def starter(message: Message, album: List[Message], state: FSMContext):
 #     file_ids = []
 
@@ -61,9 +61,9 @@ async def first(callback_query: CallbackQuery, state: FSMContext, callback_data:
 
 
 #     await message.answer(umumiyMaydonyoz, parse_mode="HTML")
-#     await state.set_state(AndijonHomeSotishHovli.umumiyMaydon)
+#     await state.set_state(ToshkentShHomeSotishHovli.umumiyMaydon)
     
-@andijon_router.message(AndijonHomeSotishHovli.images)
+@toshsh_router.message(ToshkentShHomeSotishHovli.images)
 async def starter(message: Message, state: FSMContext):
     text = message.text
 
@@ -74,35 +74,35 @@ async def starter(message: Message, state: FSMContext):
 
 
     await message.answer(umumiyMaydonyoz, parse_mode="HTML")
-    await state.set_state(AndijonHomeSotishHovli.umumiyMaydon)
+    await state.set_state(ToshkentShHomeSotishHovli.umumiyMaydon)
 
 
 
-@andijon_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    AndijonHomeSotishHovli.umumiyMaydon)
+@toshsh_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    ToshkentShHomeSotishHovli.umumiyMaydon)
 async def check_umumiy(message: Message):
     await message.reply(faqatRaqamyoz)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.umumiyMaydon)
+@toshsh_router.message(ToshkentShHomeSotishHovli.umumiyMaydon)
 async def umumiymaydon(message: Message, state: FSMContext):
     text = message.text
     await state.update_data({
         "umumiyMaydon": text
     })
 
-    await state.set_state(AndijonHomeSotishHovli.xonalar)
+    await state.set_state(ToshkentShHomeSotishHovli.xonalar)
 
     await bot.send_message(chat_id=message.chat.id, text=xonalaryoz, parse_mode="HTML")
 
 
-@andijon_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    AndijonHomeSotishHovli.xonalar)
+@toshsh_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    ToshkentShHomeSotishHovli.xonalar)
 async def check_xonalar(message: Message):
     await message.reply(faqatRaqamyoz)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.xonalar)
+@toshsh_router.message(ToshkentShHomeSotishHovli.xonalar)
 async def umumiymaydon(message: Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -111,12 +111,12 @@ async def umumiymaydon(message: Message, state: FSMContext):
 
     await bot.send_message(chat_id=message.chat.id, text=oshxonayoz, parse_mode="HTML",
                            reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.oshxona)
+    await state.set_state(ToshkentShHomeSotishHovli.oshxona)
 
 
 
 # =================================================
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.oshxona)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
     await callback_query.answer("Pressed")
@@ -126,10 +126,10 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.hammom)
+    await state.set_state(ToshkentShHomeSotishHovli.hammom)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.oshxona)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
     await callback_query.answer("Pressed")
@@ -139,10 +139,10 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.hammom)
+    await state.set_state(ToshkentShHomeSotishHovli.hammom)
 
 
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.hammom)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
     await callback_query.answer("Pressed")
@@ -153,10 +153,10 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 
     await bot.send_message(chat_id=callback_query.message.chat.id,
                            text=nechaQavatyoz)
-    await state.set_state(AndijonHomeSotishHovli.qavat)
+    await state.set_state(ToshkentShHomeSotishHovli.qavat)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.hammom)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
     await callback_query.answer("Pressed")
@@ -167,19 +167,19 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 
     await bot.send_message(chat_id=callback_query.message.chat.id,
                            text=nechaQavatyoz)
-    await state.set_state(AndijonHomeSotishHovli.qavat)
+    await state.set_state(ToshkentShHomeSotishHovli.qavat)
 
 
 # ==================================================================
 
 
-@andijon_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    AndijonHomeSotishHovli.qavat)
+@toshsh_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    ToshkentShHomeSotishHovli.qavat)
 async def check_qavat(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.qavat)
+@toshsh_router.message(ToshkentShHomeSotishHovli.qavat)
 async def umumiymaydon(message: types.Message, state: FSMContext):
     text = message.text
 
@@ -189,11 +189,11 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
 
     await bot.send_message(chat_id=message.chat.id, text=remontyoz, parse_mode="HTML", 
                            reply_markup=remontButton)
-    await state.set_state(AndijonHomeSotishHovli.remont)
+    await state.set_state(ToshkentShHomeSotishHovli.remont)
 
 
 # ====================================================================
-@andijon_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), AndijonHomeSotishHovli.remont)
+@toshsh_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), ToshkentShHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YevroremontData):
     text = "Евроремонт"
     await callback_query.answer("Pressed")
@@ -203,10 +203,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
                            reply_markup=jihozlarButton)
-    await state.set_state(AndijonHomeSotishHovli.jihozlar)
+    await state.set_state(ToshkentShHomeSotishHovli.jihozlar)
 
 
-@andijon_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), AndijonHomeSotishHovli.remont)
+@toshsh_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), ToshkentShHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirlangantData):
     text = "Таъмирланган"
     await callback_query.answer("Pressed")
@@ -216,10 +216,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
                            reply_markup=jihozlarButton)
-    await state.set_state(AndijonHomeSotishHovli.jihozlar)
+    await state.set_state(ToshkentShHomeSotishHovli.jihozlar)
 
 
-@andijon_router.callback_query(OrtachaData.filter(F.word=="ortacha"), AndijonHomeSotishHovli.remont)
+@toshsh_router.callback_query(OrtachaData.filter(F.word=="ortacha"), ToshkentShHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: OrtachaData):
     text = "Ўртача"
     await callback_query.answer("Pressed")
@@ -229,10 +229,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
                            reply_markup=jihozlarButton)
-    await state.set_state(AndijonHomeSotishHovli.jihozlar)
+    await state.set_state(ToshkentShHomeSotishHovli.jihozlar)
 
 
-@andijon_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), AndijonHomeSotishHovli.remont)
+@toshsh_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), ToshkentShHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirsizData):
     text = "Таъмирсиз"
     await callback_query.answer("Pressed")
@@ -243,11 +243,11 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
                            reply_markup=jihozlarButton)
-    await state.set_state(AndijonHomeSotishHovli.jihozlar)
+    await state.set_state(ToshkentShHomeSotishHovli.jihozlar)
 
 
 # ===============================================================
-@andijon_router.callback_query(MavjudData.filter(F.word=="mavjud"), AndijonHomeSotishHovli.jihozlar)
+@toshsh_router.callback_query(MavjudData.filter(F.word=="mavjud"), ToshkentShHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: MavjudData):
     text = "бор"
     await callback_query.answer("Pressed")
@@ -256,10 +256,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.gaz)
+    await state.set_state(ToshkentShHomeSotishHovli.gaz)
 
 
-@andijon_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), AndijonHomeSotishHovli.jihozlar)
+@toshsh_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), ToshkentShHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: JihozlarsizData):
     text = "йўқ"
     await callback_query.answer("Pressed")
@@ -268,12 +268,12 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.gaz)
+    await state.set_state(ToshkentShHomeSotishHovli.gaz)
 
 
 # ================================================================
 
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.gaz)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Газ ✔️"
     await callback_query.answer("Танланди")
@@ -283,10 +283,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.svet)
+    await state.set_state(ToshkentShHomeSotishHovli.svet)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.gaz)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -296,11 +296,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.svet)
+    await state.set_state(ToshkentShHomeSotishHovli.svet)
 
 # ========================================================================
     
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.svet)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Свет ✔️"
     await callback_query.answer("Танланди")
@@ -310,10 +310,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.suv)
+    await state.set_state(ToshkentShHomeSotishHovli.suv)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.svet)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -323,11 +323,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
-    await state.set_state(AndijonHomeSotishHovli.suv)
+    await state.set_state(ToshkentShHomeSotishHovli.suv)
 
 # ============================================================================
 
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.suv)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Сув ✔️"
     await callback_query.answer("Tanlandi")
@@ -338,10 +338,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
     await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
 
-    await state.set_state(AndijonHomeSotishHovli.kanal)
+    await state.set_state(ToshkentShHomeSotishHovli.kanal)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.suv)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Tanlandi")
@@ -352,11 +352,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
     await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
 
-    await state.set_state(AndijonHomeSotishHovli.kanal)
+    await state.set_state(ToshkentShHomeSotishHovli.kanal)
 
 # ============================================================================
 
-@andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.kanal)
+@toshsh_router.callback_query(BorData.filter(F.word=="bor"), ToshkentShHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Канализация  ✔️"
     await callback_query.answer("Tanlandi")
@@ -371,12 +371,12 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         await state.update_data({
             "qoshimchaMalumot": ""
         })
-        await state.set_state(AndijonHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(ToshkentShHomeSotishHovli.qoshimchaMalumot)
     else:
-        await state.set_state(AndijonHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(ToshkentShHomeSotishHovli.qoshimchaMalumot)
 
 
-@andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.kanal)
+@toshsh_router.callback_query(YoqData.filter(F.word=="yoq"), ToshkentShHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Tanlandi")
@@ -391,13 +391,13 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         await state.update_data({
             "qoshimchaMalumot": ""
         })
-        await state.set_state(AndijonHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(ToshkentShHomeSotishHovli.qoshimchaMalumot)
     else:
-        await state.set_state(AndijonHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(ToshkentShHomeSotishHovli.qoshimchaMalumot)
 
 # ==============================================================
 
-@andijon_router.message(AndijonHomeSotishHovli.qoshimchaMalumot)
+@toshsh_router.message(ToshkentShHomeSotishHovli.qoshimchaMalumot)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -405,12 +405,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
     await message.answer(text=valyutayoz, reply_markup=valyutaButton)
 
-    await state.set_state(AndijonHomeSotishHovli.valyuta)
+    await state.set_state(ToshkentShHomeSotishHovli.valyuta)
 
 
 # =================================================================
 
-@andijon_router.callback_query(USDData.filter(F.word=="usd"), AndijonHomeSotishHovli.valyuta)
+@toshsh_router.callback_query(USDData.filter(F.word=="usd"), ToshkentShHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: USDData):
     text = " $"
     await callback_query.answer("Pressed")
@@ -421,10 +421,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
 
-    await state.set_state(AndijonHomeSotishHovli.narxi)
+    await state.set_state(ToshkentShHomeSotishHovli.narxi)
 
 
-@andijon_router.callback_query(SUMData.filter(F.word=="sum"), AndijonHomeSotishHovli.valyuta)
+@toshsh_router.callback_query(SUMData.filter(F.word=="sum"), ToshkentShHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: SUMData):
     text = " сўм"
     await callback_query.answer("Pressed")
@@ -435,18 +435,18 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
 
-    await state.set_state(AndijonHomeSotishHovli.narxi)
+    await state.set_state(ToshkentShHomeSotishHovli.narxi)
 
 
 # ===============================================================
 
-@andijon_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    AndijonHomeSotishHovli.narxi)
+@toshsh_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    ToshkentShHomeSotishHovli.narxi)
 async def check_narxi(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.narxi)
+@toshsh_router.message(ToshkentShHomeSotishHovli.narxi)
 async def kvartira_narxi(message: types.Message, state: FSMContext):
     msg = int(message.text)
 
@@ -458,10 +458,10 @@ async def kvartira_narxi(message: types.Message, state: FSMContext):
 
     await message.answer(text=manzilyoz)
 
-    await state.set_state(AndijonHomeSotishHovli.manzil)
+    await state.set_state(ToshkentShHomeSotishHovli.manzil)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.manzil)
+@toshsh_router.message(ToshkentShHomeSotishHovli.manzil)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -469,10 +469,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
     await message.answer(text=moljalyoz)
 
-    await state.set_state(AndijonHomeSotishHovli.moljal)
+    await state.set_state(ToshkentShHomeSotishHovli.moljal)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.moljal)
+@toshsh_router.message(ToshkentShHomeSotishHovli.moljal)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -480,10 +480,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
     await message.answer(text=telraqam1yoz)
 
-    await state.set_state(AndijonHomeSotishHovli.telNumberOne)
+    await state.set_state(ToshkentShHomeSotishHovli.telNumberOne)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.telNumberOne)
+@toshsh_router.message(ToshkentShHomeSotishHovli.telNumberOne)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     telNumber = message.text
 
@@ -496,12 +496,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await state.update_data({
             "telNumberTwo": ""
         })
-        await state.set_state(AndijonHomeSotishHovli.telNumberTwo)
+        await state.set_state(ToshkentShHomeSotishHovli.telNumberTwo)
     else:
-        await state.set_state(AndijonHomeSotishHovli.telNumberTwo)
+        await state.set_state(ToshkentShHomeSotishHovli.telNumberTwo)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.telNumberTwo)
+@toshsh_router.message(ToshkentShHomeSotishHovli.telNumberTwo)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -535,7 +535,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
                   data12, data13, data14, data15]
 
@@ -558,7 +558,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         # await bot.send_media_group(chat_id=chat_id, media=media_group)
         await bot.send_message(chat_id=chat_id, text=cyrillic_text)
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(AndijonHomeSotishHovli.check)
+        await state.set_state(ToshkentShHomeSotishHovli.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
         data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
@@ -579,7 +579,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
                   data12, data13, data14, data15, data16]
 
@@ -602,7 +602,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         # await bot.send_media_group(chat_id=chat_id, media=media_group)
         await bot.send_message(chat_id=chat_id, text=cyrillic_text)
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(AndijonHomeSotishHovli.check)
+        await state.set_state(ToshkentShHomeSotishHovli.check)
 
     elif data['telNumberTwo'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -624,7 +624,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
                   data11, data12, data13, data14, data15]
 
@@ -647,7 +647,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         # await bot.send_media_group(chat_id=chat_id, media=media_group)
         await bot.send_message(chat_id=chat_id, text=cyrillic_text)
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(AndijonHomeSotishHovli.check)
+        await state.set_state(ToshkentShHomeSotishHovli.check)
 
     else:
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -670,7 +670,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
                   data11, data12, data13, data14, data15, data16]
 
@@ -693,10 +693,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         # await bot.send_media_group(chat_id=chat_id, media=media_group)
         await bot.send_message(chat_id=chat_id, text=cyrillic_text)
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(AndijonHomeSotishHovli.check)
+        await state.set_state(ToshkentShHomeSotishHovli.check)
 
 
-@andijon_router.message(AndijonHomeSotishHovli.check)
+@toshsh_router.message(ToshkentShHomeSotishHovli.check)
 async def check(message: types.Message, state: FSMContext):
     mycheck = message.text
     chat_id = message.chat.id
@@ -726,7 +726,7 @@ async def check(message: types.Message, state: FSMContext):
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
                       data12, data13, data14, data15]
 
@@ -771,7 +771,7 @@ async def check(message: types.Message, state: FSMContext):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
                       data12, data13, data14, data15, data16]
 
@@ -815,7 +815,7 @@ async def check(message: types.Message, state: FSMContext):
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
                       data11, data12, data13, data14, data15]
 
@@ -860,7 +860,7 @@ async def check(message: types.Message, state: FSMContext):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [andijonregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [toshkentshregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
                       data11, data12, data13, data14, data15, data16]
 
