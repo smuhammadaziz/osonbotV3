@@ -109,8 +109,7 @@ async def umumiymaydon(message: Message, state: FSMContext):
         "xonalar": text
     })
 
-    await bot.send_message(chat_id=message.chat.id, text=nechaQavatyoz, parse_mode="HTML",
-                           reply_markup=borYoq)
+    await bot.send_message(chat_id=message.chat.id, text=nechaQavatyoz, parse_mode="HTML")
     await state.set_state(AndijonHomeSotish.qavat)
 
 
@@ -128,8 +127,7 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
         "qavat": text
     })
 
-    await bot.send_message(chat_id=message.chat.id, text=nechanchiqavatyoz, parse_mode="HTML", 
-                           reply_markup=remontButton)
+    await bot.send_message(chat_id=message.chat.id, text=nechanchiqavatyoz, parse_mode="HTML")
     await state.set_state(AndijonHomeSotish.qavatlik)
 
 
