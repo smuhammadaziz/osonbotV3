@@ -24,6 +24,19 @@ from handlers.user.HovliSotish.XorazmHandler import xorazm_router
 
 # kvartira
 from handlers.user.KvartiraSotish.AndijonHandler import andijon_kv_router
+from handlers.user.KvartiraSotish.BuxoroHandler import buxoro_kv_router
+from handlers.user.KvartiraSotish.FargonaHandler import fargona_kv_router
+from handlers.user.KvartiraSotish.JizzaxHandler import jizzax_kv_router
+from handlers.user.KvartiraSotish.NamanganHandler import namangan_kv_router
+from handlers.user.KvartiraSotish.NavoiyHandler import navoiy_kv_router
+from handlers.user.KvartiraSotish.QashqadaryoHandler import qashqa_kv_router
+from handlers.user.KvartiraSotish.QoraqalpoqHandler import qoraqalpoq_kv_router
+from handlers.user.KvartiraSotish.SamarqandHandler import samarqand_kv_router
+from handlers.user.KvartiraSotish.SirdaryoHandler import sirdaryo_kv_router
+from handlers.user.KvartiraSotish.SurxondaryoHandler import surxon_kv_router
+from handlers.user.KvartiraSotish.ToshkentShHandler import toshsh_kv_router
+from handlers.user.KvartiraSotish.ToshkentVilHandler import toshvil_kv_router
+from handlers.user.KvartiraSotish.XorazmHandler import xorazm_kv_router
 
 
 from aiogram import Router
@@ -33,7 +46,9 @@ routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_route
     fargona_router, jizzax_router, namangan_router, navoiy_router, qashqa_router, \
     qoraqalpoq_router, samarqand_router, sirdaryo_router, surxon_router, toshsh_router, \
     toshvil_router, xorazm_router, \
-    andijon_kv_router    ]
+    andijon_kv_router, buxoro_kv_router, fargona_kv_router, jizzax_kv_router, namangan_kv_router, \
+    navoiy_kv_router, qashqa_kv_router, qoraqalpoq_kv_router, samarqand_kv_router, sirdaryo_kv_router, \
+    surxon_kv_router, toshsh_kv_router, toshvil_kv_router, xorazm_kv_router    ]
 
 
 
