@@ -42,7 +42,7 @@ from aiogram.utils.media_group import MediaGroupBuilder
 fargona_kv_router = Router()
 
 
-fargona_kv_router.callback_query(FargonaKvartiraData.filter(F.word=="fargonakv"))
+@fargona_kv_router.callback_query(FargonaKvartiraData.filter(F.word=="fargonakv"))
 async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: FargonaKvartiraData):
     await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
@@ -51,7 +51,7 @@ async def first(callback_query: CallbackQuery, state: FSMContext, callback_data:
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.images, F.media_group_id, F.content_type.in_({'photo'}))
+@fargona_kv_router.message(FargonaHomeSotish.images, F.media_group_id, F.content_type.in_({'photo'}))
 @media_group_handler
 async def album_handler(messages: List[types.Message], state: FSMContext):
     file_ids = []
@@ -74,14 +74,14 @@ async def album_handler(messages: List[types.Message], state: FSMContext):
 
 
 
-fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+@fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
                     FargonaHomeSotish.umumiyMaydon)
 async def check_umumiy(message: Message):
     await message.reply(faqatRaqamyoz)
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.umumiyMaydon)
+@fargona_kv_router.message(FargonaHomeSotish.umumiyMaydon)
 async def umumiymaydon(message: Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -94,14 +94,14 @@ async def umumiymaydon(message: Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+@fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
                     FargonaHomeSotish.xonalar)
 async def check_xonalar(message: Message):
     await message.reply(faqatRaqamyoz)
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.xonalar)
+@fargona_kv_router.message(FargonaHomeSotish.xonalar)
 async def umumiymaydon(message: Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -113,14 +113,14 @@ async def umumiymaydon(message: Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+@fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
                     FargonaHomeSotish.qavat)
 async def check_qavat(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.qavat)
+@fargona_kv_router.message(FargonaHomeSotish.qavat)
 async def umumiymaydon(message: types.Message, state: FSMContext):
     text = message.text
 
@@ -133,14 +133,14 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+@fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
                     FargonaHomeSotish.qavatlik)
 async def check_qavat(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.qavatlik)
+@fargona_kv_router.message(FargonaHomeSotish.qavatlik)
 async def umumiymaydon(message: types.Message, state: FSMContext):
     text = message.text
 
@@ -155,7 +155,7 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
 
 # ====================================================================
 
-fargona_kv_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), FargonaHomeSotish.remont)
+@fargona_kv_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), FargonaHomeSotish.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YevroremontData):
     text = "Евроремонт"
     await callback_query.answer("Pressed")
@@ -169,7 +169,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
 
-fargona_kv_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), FargonaHomeSotish.remont)
+@fargona_kv_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), FargonaHomeSotish.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirlangantData):
     text = "Таъмирланган"
     await callback_query.answer("Pressed")
@@ -183,7 +183,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
 
-fargona_kv_router.callback_query(OrtachaData.filter(F.word=="ortacha"), FargonaHomeSotish.remont)
+@fargona_kv_router.callback_query(OrtachaData.filter(F.word=="ortacha"), FargonaHomeSotish.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: OrtachaData):
     text = "Ўртача"
     await callback_query.answer("Pressed")
@@ -197,7 +197,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
 
-fargona_kv_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), FargonaHomeSotish.remont)
+@fargona_kv_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), FargonaHomeSotish.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirsizData):
     text = "Таъмирсиз"
     await callback_query.answer("Pressed")
@@ -213,7 +213,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 # ===============================================================
 
-fargona_kv_router.callback_query(MavjudData.filter(F.word=="mavjud"), FargonaHomeSotish.jihozlar)
+@fargona_kv_router.callback_query(MavjudData.filter(F.word=="mavjud"), FargonaHomeSotish.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: MavjudData):
     text = "бор"
     await callback_query.answer("Pressed")
@@ -226,7 +226,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
 
-fargona_kv_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), FargonaHomeSotish.jihozlar)
+@fargona_kv_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), FargonaHomeSotish.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: JihozlarsizData):
     text = "йўқ"
     await callback_query.answer("Pressed")
@@ -241,7 +241,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 # ================================================================
 
 
-fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.gaz)
+@fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Газ ✔️"
     await callback_query.answer("Танланди")
@@ -255,7 +255,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
 
 
-fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.gaz)
+@fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -270,7 +270,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 # ========================================================================
     
 
-fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.svet)
+@fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Свет ✔️"
     await callback_query.answer("Танланди")
@@ -284,7 +284,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
 
 
-fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.svet)
+@fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -299,7 +299,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 # ============================================================================
 
 
-fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.suv)
+@fargona_kv_router.callback_query(BorData.filter(F.word=="bor"), FargonaHomeSotish.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Сув  ✔️"
     await callback_query.answer("Tanlandi")
@@ -320,7 +320,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
 
 
-fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.suv)
+@fargona_kv_router.callback_query(YoqData.filter(F.word=="yoq"), FargonaHomeSotish.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Tanlandi")
@@ -342,7 +342,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 # ==============================================================
 
 
-fargona_kv_router.message(FargonaHomeSotish.qoshimchaMalumot)
+@fargona_kv_router.message(FargonaHomeSotish.qoshimchaMalumot)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -356,7 +356,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 # =================================================================
 
 
-fargona_kv_router.callback_query(USDData.filter(F.word=="usd"), FargonaHomeSotish.valyuta)
+@fargona_kv_router.callback_query(USDData.filter(F.word=="usd"), FargonaHomeSotish.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: USDData):
     text = " $"
     await callback_query.answer("Pressed")
@@ -371,7 +371,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
 
-fargona_kv_router.callback_query(SUMData.filter(F.word=="sum"), FargonaHomeSotish.valyuta)
+@fargona_kv_router.callback_query(SUMData.filter(F.word=="sum"), FargonaHomeSotish.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: SUMData):
     text = " сўм"
     await callback_query.answer("Pressed")
@@ -388,14 +388,14 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 # ===============================================================
 
 
-fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+@fargona_kv_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
                     FargonaHomeSotish.narxi)
 async def check_narxi(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.narxi)
+@fargona_kv_router.message(FargonaHomeSotish.narxi)
 async def kvartira_narxi(message: types.Message, state: FSMContext):
     msg = int(message.text)
 
@@ -411,7 +411,7 @@ async def kvartira_narxi(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.manzil)
+@fargona_kv_router.message(FargonaHomeSotish.manzil)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -423,7 +423,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.moljal)
+@fargona_kv_router.message(FargonaHomeSotish.moljal)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -435,7 +435,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.telNumberOne)
+@fargona_kv_router.message(FargonaHomeSotish.telNumberOne)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     telNumber = message.text
 
@@ -454,7 +454,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.telNumberTwo)
+@fargona_kv_router.message(FargonaHomeSotish.telNumberTwo)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -633,7 +633,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
 
 
-fargona_kv_router.message(FargonaHomeSotish.check)
+@fargona_kv_router.message(FargonaHomeSotish.check)
 async def check(message: types.Message, state: FSMContext):
     mycheck = message.text
     chat_id = message.chat.id
