@@ -19,7 +19,7 @@ from transliterate import to_cyrillic
 from utils.QuestionKvartira.kvartiraqs import hovlitanlandi, rasmlar, umumiyMaydonyoz, faqatRaqamyoz, gazyoz, \
     jihozlaryoz, kanalizatsiyayoz, manzilyoz, moljalyoz, narxiyoz, nechaQavatyoz,oshxonayoz, \
     qoshimchaMalumotyoz, remontyoz, suvyoz, svetyoz, telraqam1yoz, telraqam2yoz, valyutayoz, \
-    xammomyoz, xonalaryoz, channel_id, check_text, buxororegion, data2, data32, data33, \
+    xammomyoz, xonalaryoz, buxoro_id, check_text, buxororegion, data2, data32, data33, \
     data34, data35, success_text, nechanchiqavatyoz
 
 
@@ -648,7 +648,7 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            await bot.send_media_group(chat_id=buxoro_id, media=media_group.build())
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
@@ -689,7 +689,7 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            await bot.send_media_group(chat_id=buxoro_id, media=media_group.build())
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
@@ -729,7 +729,7 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            await bot.send_media_group(chat_id=buxoro_id, media=media_group.build())
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         else:
@@ -770,7 +770,7 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            await bot.send_media_group(chat_id=buxoro_id, media=media_group.build())
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
