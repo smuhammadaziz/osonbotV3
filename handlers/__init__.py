@@ -10,7 +10,7 @@ from handlers.user.HovliSotish.JizzaxHandler import jizzax_router
 from handlers.user.HovliSotish.NamanganHandler import namangan_router
 from handlers.user.HovliSotish.NavoiyHandler import navoiy_router
 from handlers.user.HovliSotish.QashqadaryoHandler import qashqa_router
-from handlers.user.HovliSotish.QoraqalpoqHandler import qoraqalpoq_router
+from handlers.user.HovliSotish.QoraqalpoqHandler import qoraqaloq_router
 from handlers.user.HovliSotish.SamarqandHandler import samarqand_router
 from handlers.user.HovliSotish.SirdaryoHandler import sirdaryo_router
 from handlers.user.HovliSotish.SurxondaryoHandler import surxon_router
@@ -43,7 +43,7 @@ from typing import NoReturn, List
 
 routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_router, \
     fargona_router, jizzax_router, namangan_router, navoiy_router, qashqa_router, \
-    qoraqalpoq_router, samarqand_router, sirdaryo_router, surxon_router, toshsh_router, \
+    qoraqaloq_router, samarqand_router, sirdaryo_router, surxon_router, toshsh_router, \
     toshvil_router, xorazm_router, \
     andijon_kv_router, buxoro_kv_router, fargona_kv_router, jizzax_kv_router, namangan_kv_router, \
     navoiy_kv_router, qashqa_kv_router, qoraqalpoq_kv_router, samarqand_kv_router, sirdaryo_kv_router, \
