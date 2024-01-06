@@ -44,6 +44,7 @@ allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                                                     callback_data=QoraqalpoqData(word="qora").pack())],
                                           ])
 
+
 toshkentShHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
                                           [InlineKeyboardButton(text="Квартира", callback_data=ToshketnShKvartiraData(word="toshshkv").pack()),
@@ -102,7 +103,7 @@ buxoroHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 
 sirdaryoHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                     inline_keyboard=[
-                                        [InlineKeyboardButton(text="Квартира", callback_data=SirdaryoKvartiraData(word="sirdayokv").pack()),
+                                        [InlineKeyboardButton(text="Квартира", callback_data=SirdaryoKvartiraData(word="sirdaryokv").pack()),
                                          InlineKeyboardButton(text="Ховли Участка", callback_data=SirdaryoHovliData(word="sirdaryohovli").pack())],
                                         [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SirdaryoYerData(word="sirdaryoyer").pack())],
                                         [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
