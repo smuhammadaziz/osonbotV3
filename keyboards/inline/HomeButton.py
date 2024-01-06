@@ -21,6 +21,7 @@ from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
 from keyboards.inline.data import MavjudData, JihozlarsizData
 from keyboards.inline.data import USDData, SUMData
+from keyboards.inline.data import DocumentHaveData, DocumentNotData
 
 
 
@@ -188,8 +189,8 @@ valyutaButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 
 documentButton = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
-                                          [InlineKeyboardButton(text="Бор,  қонуний", callback_data="dokumentBor")],
-                                          [InlineKeyboardButton(text="Тайёр эмас", callback_data="dokumentYoq")]
+                                          [InlineKeyboardButton(text="Бор,  қонуний", callback_data=DocumentHaveData(word="dokumentbor").pack())],
+                                          [InlineKeyboardButton(text="Тайёр эмас", callback_data=DocumentNotData(word="dokumentyoq").pack())]
                                       ])
 
 link_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,

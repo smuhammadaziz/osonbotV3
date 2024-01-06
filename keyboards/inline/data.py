@@ -314,3 +314,12 @@ class USDData(CallbackData, prefix="USD"):
 
 class SUMData(CallbackData, prefix="SUM"):
     word: str
+
+# =========================================================
+# =========================================================
+    
+class DocumentHaveData(CallbackData, prefix="bor"):
+    word: str
+
+class DocumentNotData(CallbackData, prefix="yoq"):
+    word: str

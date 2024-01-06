@@ -38,6 +38,10 @@ from handlers.user.KvartiraSotish.ToshkentVilHandler import toshvil_kv_router
 from handlers.user.KvartiraSotish.XorazmHandler import xorazm_kv_router
 
 
+# yer
+from handlers.user.YerSotish.AndijonHandler import andijon_yer_router
+
+
 from aiogram import Router
 from typing import NoReturn, List
 
@@ -47,7 +51,8 @@ routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_route
     toshvil_router, xorazm_router, \
     andijon_kv_router, buxoro_kv_router, fargona_kv_router, jizzax_kv_router, namangan_kv_router, \
     navoiy_kv_router, qashqa_kv_router, qoraqalpoq_kv_router, samarqand_kv_router, sirdaryo_kv_router, \
-    surxon_kv_router, toshsh_kv_router, toshvil_kv_router, xorazm_kv_router    ]
+    surxon_kv_router, toshsh_kv_router, toshvil_kv_router, xorazm_kv_router, \
+    andijon_yer_router    ]
 
 
 
