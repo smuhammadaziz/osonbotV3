@@ -65,8 +65,7 @@ async def album_handler(messages: List[types.Message], state: FSMContext):
         "images": file_ids
     })
 
-    await bot.send_message(chat_id=messages[-1].chat.id, text=umumiyMaydonyoz, parse_mode="HTML")
-    # await messages[-1].answer(umumiyMaydonyoz, parse_mode="HTML")
+    await messages[-1].answer(umumiyMaydonyoz, parse_mode="HTML")
     await state.set_state(AndijonHomeSotishHovli.umumiyMaydon)
 
 
