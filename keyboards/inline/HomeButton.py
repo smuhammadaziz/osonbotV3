@@ -158,7 +158,6 @@ qoraqalpoqHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                           [InlineKeyboardButton(text="⬅️ Ортга", callback_data="hometypeortgabutton")]
                                       ])
 
-
 # =========================================================================================
 
 borYoq = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,

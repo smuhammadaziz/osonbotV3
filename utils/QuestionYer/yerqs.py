@@ -1,7 +1,9 @@
 # Hovli Questions
 channel_id = -1001747207701
 
-hovlitanlandi = "Hovli tanlandi"
+hovlitanlandi = "Yer tanlandi"
+
+
 rasmlar = "<b> Расмларни жойлаш (2 - 10  тагача) </b>"
 umumiyMaydonyoz = "<b> Умумий майдонини ёзинг </b>"
 faqatRaqamyoz = "❗ Фақат рақамда ёзинг"

@@ -10,24 +10,23 @@ from aiogram.types.callback_query import CallbackQuery
 
 from keyboards.default.JobButton import checkbtn, start
 from keyboards.default.JobButton import otkazishButton
-from keyboards.inline.HomeButton import remontButton, jihozlarButton, valyutaButton, borYoq
+from keyboards.inline.HomeButton import remontButton, documentButton, valyutaButton, borYoq
 from loader import bot
-from states.HovliState.SamarqandState import SamarqandHomeSotishHovli
+from states.YerSotish.SamarqandState import SamarqandYerSotish
 
 from transliterate import to_cyrillic
 
-from utils.QuestionHovli.hovliqs import hovlitanlandi, rasmlar, umumiyMaydonyoz, faqatRaqamyoz, gazyoz, \
+from utils.QuestionYer.yerqs import hovlitanlandi, rasmlar, umumiyMaydonyoz, faqatRaqamyoz, gazyoz, \
     jihozlaryoz, kanalizatsiyayoz, manzilyoz, moljalyoz, narxiyoz, nechaQavatyoz,oshxonayoz, \
     qoshimchaMalumotyoz, remontyoz, suvyoz, svetyoz, telraqam1yoz, telraqam2yoz, valyutayoz, \
     xammomyoz, xonalaryoz, channel_id, check_text, samarqandregion, data2, data32, data33, \
-    data34, data35, success_text
+    data34, data35, success_text, hujjatlaribormiyoz
 
 
-from keyboards.inline.data import SamarqandHovliData
+from keyboards.inline.data import SamarqandData
 
 from keyboards.inline.data import YoqData, BorData
-from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
-from keyboards.inline.data import MavjudData, JihozlarsizData
+from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import USDData, SUMData
 
 
@@ -38,17 +37,17 @@ from aiogram_media_group import media_group_handler
 from aiogram.utils.media_group import MediaGroupBuilder
 
 
-samarqand_router = Router()
+samarqand_yer_router = Router()
 
-@samarqand_router.callback_query(SamarqandHovliData.filter(F.word=="samarqandhovli"))
-async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: SamarqandHovliData):
+@samarqand_yer_router.callback_query(SamarqandData.filter(F.word=="samarqandyer"))
+async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: SamarqandData):
     await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
 
-    await state.set_state(SamarqandHomeSotishHovli.images)
+    await state.set_state(SamarqandYerSotish.images)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.images, F.media_group_id, F.content_type.in_({'photo'}))
+@samarqand_yer_router.message(SamarqandYerSotish.images, F.media_group_id, F.content_type.in_({'photo'}))
 @media_group_handler
 async def album_handler(messages: List[types.Message], state: FSMContext):
     file_ids = []
@@ -66,206 +65,30 @@ async def album_handler(messages: List[types.Message], state: FSMContext):
     })
 
     await messages[-1].answer(umumiyMaydonyoz, parse_mode="HTML")
-    await state.set_state(SamarqandHomeSotishHovli.umumiyMaydon)
+    await state.set_state(SamarqandYerSotish.umumiyMaydon)
 
 
-
-@samarqand_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    SamarqandHomeSotishHovli.umumiyMaydon)
+@samarqand_yer_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    SamarqandYerSotish.umumiyMaydon)
 async def check_umumiy(message: Message):
     await message.reply(faqatRaqamyoz)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.umumiyMaydon)
+@samarqand_yer_router.message(SamarqandYerSotish.umumiyMaydon)
 async def umumiymaydon(message: Message, state: FSMContext):
     text = message.text
     await state.update_data({
         "umumiyMaydon": text
     })
 
-    await state.set_state(SamarqandHomeSotishHovli.xonalar)
+    await bot.send_message(chat_id=message.chat.id, text=gazyoz, reply_markup=borYoq, parse_mode="HTML")
 
-    await bot.send_message(chat_id=message.chat.id, text=xonalaryoz, parse_mode="HTML")
-
-
-@samarqand_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    SamarqandHomeSotishHovli.xonalar)
-async def check_xonalar(message: Message):
-    await message.reply(faqatRaqamyoz)
-
-
-@samarqand_router.message(SamarqandHomeSotishHovli.xonalar)
-async def umumiymaydon(message: Message, state: FSMContext):
-    text = message.text
-    await state.update_data({
-        "xonalar": text
-    })
-
-    await bot.send_message(chat_id=message.chat.id, text=oshxonayoz, parse_mode="HTML",
-                           reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.oshxona)
-
-
-
-# =================================================
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.oshxona)
-async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
-    text = "бор"
-    await callback_query.answer("Pressed")
-
-    await state.update_data({
-        "oshxona": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.hammom)
-
-
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.oshxona)
-async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
-    text = "йўқ"
-    await callback_query.answer("Pressed")
-
-    await state.update_data({
-        "oshxona": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.hammom)
-
-
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.hammom)
-async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
-    text = "бор"
-    await callback_query.answer("Pressed")
-
-    await state.update_data({
-        "hammom": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id,
-                           text=nechaQavatyoz)
-    await state.set_state(SamarqandHomeSotishHovli.qavat)
-
-
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.hammom)
-async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
-    text = "йўқ"
-    await callback_query.answer("Pressed")
-    
-    await state.update_data({
-        "hammom": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id,
-                           text=nechaQavatyoz)
-    await state.set_state(SamarqandHomeSotishHovli.qavat)
-
-
-# ==================================================================
-
-
-@samarqand_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    SamarqandHomeSotishHovli.qavat)
-async def check_qavat(message: types.Message):
-    await message.reply(faqatRaqamyoz)
-
-
-@samarqand_router.message(SamarqandHomeSotishHovli.qavat)
-async def umumiymaydon(message: types.Message, state: FSMContext):
-    text = message.text
-
-    await state.update_data({
-        "qavat": text
-    })
-
-    await bot.send_message(chat_id=message.chat.id, text=remontyoz, parse_mode="HTML", 
-                           reply_markup=remontButton)
-    await state.set_state(SamarqandHomeSotishHovli.remont)
-
-
-# ====================================================================
-@samarqand_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), SamarqandHomeSotishHovli.remont)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YevroremontData):
-    text = "Евроремонт"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "remont": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
-    await state.set_state(SamarqandHomeSotishHovli.jihozlar)
-
-
-@samarqand_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), SamarqandHomeSotishHovli.remont)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirlangantData):
-    text = "Таъмирланган"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "remont": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
-    await state.set_state(SamarqandHomeSotishHovli.jihozlar)
-
-
-@samarqand_router.callback_query(OrtachaData.filter(F.word=="ortacha"), SamarqandHomeSotishHovli.remont)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: OrtachaData):
-    text = "Ўртача"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "remont": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
-    await state.set_state(SamarqandHomeSotishHovli.jihozlar)
-
-
-@samarqand_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), SamarqandHomeSotishHovli.remont)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirsizData):
-    text = "Таъмирсиз"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "remont": text
-    })
-
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
-    await state.set_state(SamarqandHomeSotishHovli.jihozlar)
-
-
-# ===============================================================
-@samarqand_router.callback_query(MavjudData.filter(F.word=="mavjud"), SamarqandHomeSotishHovli.jihozlar)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: MavjudData):
-    text = "бор"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "jihozlar": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.gaz)
-
-
-@samarqand_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), SamarqandHomeSotishHovli.jihozlar)
-async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: JihozlarsizData):
-    text = "йўқ"
-    await callback_query.answer("Pressed")
-    await state.update_data({
-        "jihozlar": text
-    })
-
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.gaz)
+    await state.set_state(SamarqandYerSotish.gaz)
 
 
 # ================================================================
 
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.gaz)
+@samarqand_yer_router.callback_query(BorData.filter(F.word=="bor"), SamarqandYerSotish.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Газ ✔️"
     await callback_query.answer("Танланди")
@@ -275,10 +98,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.svet)
+    await state.set_state(SamarqandYerSotish.svet)
 
 
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.gaz)
+@samarqand_yer_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandYerSotish.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -288,11 +111,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.svet)
+    await state.set_state(SamarqandYerSotish.svet)
 
 # ========================================================================
     
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.svet)
+@samarqand_yer_router.callback_query(BorData.filter(F.word=="bor"), SamarqandYerSotish.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Свет ✔️"
     await callback_query.answer("Танланди")
@@ -302,10 +125,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.suv)
+    await state.set_state(SamarqandYerSotish.suv)
 
 
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.svet)
+@samarqand_yer_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandYerSotish.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Танланди")
@@ -315,11 +138,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
-    await state.set_state(SamarqandHomeSotishHovli.suv)
+    await state.set_state(SamarqandYerSotish.suv)
 
 # ============================================================================
 
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.suv)
+@samarqand_yer_router.callback_query(BorData.filter(F.word=="bor"), SamarqandYerSotish.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Сув ✔️"
     await callback_query.answer("Tanlandi")
@@ -330,10 +153,10 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
     await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
 
-    await state.set_state(SamarqandHomeSotishHovli.kanal)
+    await state.set_state(SamarqandYerSotish.kanal)
 
 
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.suv)
+@samarqand_yer_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandYerSotish.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Tanlandi")
@@ -344,11 +167,11 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
     await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
 
-    await state.set_state(SamarqandHomeSotishHovli.kanal)
+    await state.set_state(SamarqandYerSotish.kanal)
 
 # ============================================================================
 
-@samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.kanal)
+@samarqand_yer_router.callback_query(BorData.filter(F.word=="bor"), SamarqandYerSotish.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Канализация  ✔️"
     await callback_query.answer("Tanlandi")
@@ -363,12 +186,12 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         await state.update_data({
             "qoshimchaMalumot": ""
         })
-        await state.set_state(SamarqandHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(SamarqandYerSotish.qoshimchaMalumot)
     else:
-        await state.set_state(SamarqandHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(SamarqandYerSotish.qoshimchaMalumot)
 
 
-@samarqand_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandHomeSotishHovli.kanal)
+@samarqand_yer_router.callback_query(YoqData.filter(F.word=="yoq"), SamarqandYerSotish.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
     await callback_query.answer("Tanlandi")
@@ -383,26 +206,58 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         await state.update_data({
             "qoshimchaMalumot": ""
         })
-        await state.set_state(SamarqandHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(SamarqandYerSotish.qoshimchaMalumot)
     else:
-        await state.set_state(SamarqandHomeSotishHovli.qoshimchaMalumot)
+        await state.set_state(SamarqandYerSotish.qoshimchaMalumot)
 
 # ==============================================================
 
-@samarqand_router.message(SamarqandHomeSotishHovli.qoshimchaMalumot)
+@samarqand_yer_router.message(SamarqandYerSotish.qoshimchaMalumot)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
         "qoshimchaMalumot": text
     })
-    await message.answer(text=valyutayoz, reply_markup=valyutaButton)
+    await message.answer(text=hujjatlaribormiyoz, reply_markup=documentButton)
 
-    await state.set_state(SamarqandHomeSotishHovli.valyuta)
+    await state.set_state(SamarqandYerSotish.hujjatlar)
 
 
 # =================================================================
+    
+@samarqand_yer_router.callback_query(DocumentHaveData.filter(F.word=="dokumentbor"), SamarqandYerSotish.hujjatlar)
+async def dokumentlar(callback_query: types.CallbackQuery, state: FSMContext):
+    text = " Бор,  қонуний"
+    await callback_query.answer("Dokument bor")
 
-@samarqand_router.callback_query(USDData.filter(F.word=="usd"), SamarqandHomeSotishHovli.valyuta)
+    await state.update_data({
+        "hujjatlar": text
+    })
+
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=valyutayoz,
+                           reply_markup=valyutaButton)
+
+    await state.set_state(SamarqandYerSotish.valyuta)
+
+
+@samarqand_yer_router.callback_query(DocumentNotData.filter(F.word=="dokumentyoq"), SamarqandYerSotish.hujjatlar)
+async def dokumentlar(callback_query: types.CallbackQuery, state: FSMContext):
+    text = " Тайёр эмас"
+    await callback_query.answer("Dokument Yo'q")
+
+    await state.update_data({
+        "hujjatlar": text
+    })
+
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=valyutayoz,
+                           reply_markup=valyutaButton)
+
+    await state.set_state(SamarqandYerSotish.valyuta)    
+
+# =================================================================
+    
+
+@samarqand_yer_router.callback_query(USDData.filter(F.word=="usd"), SamarqandYerSotish.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: USDData):
     text = " $"
     await callback_query.answer("Pressed")
@@ -413,10 +268,10 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
 
-    await state.set_state(SamarqandHomeSotishHovli.narxi)
+    await state.set_state(SamarqandYerSotish.narxi)
 
 
-@samarqand_router.callback_query(SUMData.filter(F.word=="sum"), SamarqandHomeSotishHovli.valyuta)
+@samarqand_yer_router.callback_query(SUMData.filter(F.word=="sum"), SamarqandYerSotish.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: SUMData):
     text = " сўм"
     await callback_query.answer("Pressed")
@@ -427,18 +282,18 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
 
-    await state.set_state(SamarqandHomeSotishHovli.narxi)
+    await state.set_state(SamarqandYerSotish.narxi)
 
 
 # ===============================================================
 
-@samarqand_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
-                    SamarqandHomeSotishHovli.narxi)
+@samarqand_yer_router.message(lambda message: message.text and not message.text.replace('.', '').replace(',', '').isdigit(),
+                    SamarqandYerSotish.narxi)
 async def check_narxi(message: types.Message):
     await message.reply(faqatRaqamyoz)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.narxi)
+@samarqand_yer_router.message(SamarqandYerSotish.narxi)
 async def kvartira_narxi(message: types.Message, state: FSMContext):
     msg = int(message.text)
 
@@ -450,10 +305,10 @@ async def kvartira_narxi(message: types.Message, state: FSMContext):
 
     await message.answer(text=manzilyoz)
 
-    await state.set_state(SamarqandHomeSotishHovli.manzil)
+    await state.set_state(SamarqandYerSotish.manzil)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.manzil)
+@samarqand_yer_router.message(SamarqandYerSotish.manzil)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -461,10 +316,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
     await message.answer(text=moljalyoz)
 
-    await state.set_state(SamarqandHomeSotishHovli.moljal)
+    await state.set_state(SamarqandYerSotish.moljal)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.moljal)
+@samarqand_yer_router.message(SamarqandYerSotish.moljal)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
@@ -472,10 +327,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
     await message.answer(text=telraqam1yoz)
 
-    await state.set_state(SamarqandHomeSotishHovli.telNumberOne)
+    await state.set_state(SamarqandYerSotish.telNumberOne)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.telNumberOne)
+@samarqand_yer_router.message(SamarqandYerSotish.telNumberOne)
 async def umumiyMaydon(message: types.Message, state: FSMContext):
     telNumber = message.text
 
@@ -488,13 +343,13 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await state.update_data({
             "telNumberTwo": ""
         })
-        await state.set_state(SamarqandHomeSotishHovli.telNumberTwo)
+        await state.set_state(SamarqandYerSotish.telNumberTwo)
     else:
-        await state.set_state(SamarqandHomeSotishHovli.telNumberTwo)
+        await state.set_state(SamarqandYerSotish.telNumberTwo)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.telNumberTwo)
-async def umumiyMaydon(message: types.Message, state: FSMContext):
+@samarqand_yer_router.message(SamarqandYerSotish.telNumberTwo)
+async def telNumbertwo(message: types.Message, state: FSMContext):
     text = message.text
     await state.update_data({
         "telNumberTwo": text
@@ -507,28 +362,21 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
     photos = data['images']
 
-    
     if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
-        data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-        oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-        hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-        data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-        data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-        data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-        data9 = "🔷 "
+        data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+        data9 = "♦️ "
         gaz = data['gaz']
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n\n"
-        data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+        data10 = "бор \n"
+        document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n\n"
+        data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                  data10,
+        result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                   data12, data13, data14, data15]
 
         array = []
@@ -549,29 +397,23 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(SamarqandHomeSotishHovli.check)
+        await state.set_state(SamarqandYerSotish.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
-        data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-        oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-        hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-        data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-        data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-        data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-        data9 = "🔷 "
+        data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+        data9 = "♦️ "
         gaz = data['gaz']
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n\n"
-        data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+        data10 = "бор \n"
+        document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n\n"
+        data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                  data10,
+        result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                   data12, data13, data14, data15, data16]
 
         array = []
@@ -592,30 +434,24 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(SamarqandHomeSotishHovli.check)
+        await state.set_state(SamarqandYerSotish.check)
 
     elif data['telNumberTwo'] == "⏭️ Кейингиси":
-        data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-        oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-        hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-        data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-        data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-        data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-        data9 = "🔷 "
+        data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+        data9 = "♦️ "
         gaz = data['gaz']
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
         data10 = "бор \n"
-        data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
-        data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+        document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n"
+        data11 = "♦️ Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
+        data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                  data10,
+        result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                   data11, data12, data13, data14, data15]
 
         array = []
@@ -636,31 +472,25 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(SamarqandHomeSotishHovli.check)
+        await state.set_state(SamarqandYerSotish.check)
 
     else:
-        data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-        oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-        hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-        data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-        data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-        data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-        data9 = "🔷 "
+        data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+        data9 = "♦️ "
         gaz = data['gaz']
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
         data10 = "бор \n"
-        data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
-        data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+        document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n"
+        data11 = "♦️ Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
+        data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
         data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                  data10,
+        result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                   data11, data12, data13, data14, data15, data16]
 
         array = []
@@ -681,10 +511,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
-        await state.set_state(SamarqandHomeSotishHovli.check)
+        await state.set_state(SamarqandYerSotish.check)
 
 
-@samarqand_router.message(SamarqandHomeSotishHovli.check)
+@samarqand_yer_router.message(SamarqandYerSotish.check)
 async def check(message: types.Message, state: FSMContext):
     mycheck = message.text
     chat_id = message.chat.id
@@ -696,26 +526,20 @@ async def check(message: types.Message, state: FSMContext):
         photos = data['images']
 
         if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
-            data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-            oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-            hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-            data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-            data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-            data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-            data9 = "🔷 "
+            data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+            data9 = "♦️ "
             gaz = data['gaz']
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n\n"
-            data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+            data10 = "бор \n"
+            document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n\n"
+            data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                      data10,
+            result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                       data12, data13, data14, data15]
 
             array = []
@@ -735,32 +559,25 @@ async def check(message: types.Message, state: FSMContext):
                 media_group.add_photo(f"{file_id}")
 
             await bot.send_media_group(chat_id=channel_id, media=media_group.build())
-            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
         elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
-            data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-            oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-            hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-            data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-            data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-            data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-            data9 = "🔷 "
+            data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+            data9 = "♦️ "
             gaz = data['gaz']
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n\n"
-            data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+            data10 = "бор \n"
+            document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n\n"
+            data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                      data10,
+            result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                       data12, data13, data14, data15, data16]
 
             array = []
@@ -780,31 +597,24 @@ async def check(message: types.Message, state: FSMContext):
                 media_group.add_photo(f"{file_id}")
 
             await bot.send_media_group(chat_id=channel_id, media=media_group.build())
-            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
-            data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-            oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-            hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-            data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-            data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-            data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-            data9 = "🔷 "
+            data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+            data9 = "♦️ "
             gaz = data['gaz']
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
             data10 = "бор \n"
-            data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
-            data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+            document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n"
+            data11 = "♦️ Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
+            data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                      data10,
+            result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                       data11, data12, data13, data14, data15]
 
             array = []
@@ -824,32 +634,25 @@ async def check(message: types.Message, state: FSMContext):
                 media_group.add_photo(f"{file_id}")
 
             await bot.send_media_group(chat_id=channel_id, media=media_group.build())
-            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         else:
-            data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
-            oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
-            hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
-            data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
-            data7 = "🔷 Ремонти: " + data['remont'] + "\n"
-            data8 = "🔷 Жиҳозлари: " + data['jihozlar'] + "\n"
-            data9 = "🔷 "
+            data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
+            data9 = "♦️ "
             gaz = data['gaz']
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
             data10 = "бор \n"
-            data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
-            data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
+            document = "♦️ Ҳужжатлари: " + data['hujjatlar'] + "\n"
+            data11 = "♦️ Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
+            data12 = "💲 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
             data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
-                      data10,
+            result = [samarqandregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
                       data11, data12, data13, data14, data15, data16]
 
             array = []
@@ -869,7 +672,6 @@ async def check(message: types.Message, state: FSMContext):
                 media_group.add_photo(f"{file_id}")
 
             await bot.send_media_group(chat_id=channel_id, media=media_group.build())
-            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
