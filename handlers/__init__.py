@@ -1,4 +1,3 @@
-from MediaGroup import AlbumMiddleware
 from handlers.user.start import user_router
 from handlers.user.UyJoyHandler import uyJoy_router
 

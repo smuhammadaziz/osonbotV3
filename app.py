@@ -3,7 +3,6 @@ from utils.set_bot_commands import set_default_commands
 from aiogram import Dispatcher, Bot, Router
 from aiogram.fsm.storage.memory import MemoryStorage
 
-from MediaGroup import AlbumMiddleware
 
 from asyncio import run
 from pathlib import Path
@@ -11,7 +10,6 @@ from loguru import logger
 from dotenv import load_dotenv
 
 
-middleware_router = Router()
 
 async def main() -> None:
     base_dir = Path(__file__).resolve().parent.parent
@@ -24,10 +22,6 @@ async def main() -> None:
     dp: Dispatcher = Dispatcher(storage=MemoryStorage())
     bot = Bot(config.BOT_TOKEN)
     register_handlers(dp)
-
-    # AlbumMiddleware(dp)
-
-    middleware_router.message.middleware(AlbumMiddleware())
 
     logger.info('Bot started')
     await set_default_commands(bot)

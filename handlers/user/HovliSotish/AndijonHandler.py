@@ -2,7 +2,7 @@ from typing import List
 
 from aiogram import types, F, Router
 
-from aiogram.types import Message, ContentType
+from aiogram.types import Message
 
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import default_state
@@ -33,6 +33,10 @@ from keyboards.inline.data import USDData, SUMData
 
 mode = "Markdown"
 
+from aiogram_media_group import media_group_handler
+
+from aiogram.utils.media_group import MediaGroupBuilder
+
 
 andijon_router = Router()
 
@@ -44,36 +48,25 @@ async def first(callback_query: CallbackQuery, state: FSMContext, callback_data:
     await state.set_state(AndijonHomeSotishHovli.images)
 
 
+@andijon_router.message(AndijonHomeSotishHovli.images, F.media_group_id, F.content_type.in_({'photo'}))
+@media_group_handler
+async def album_handler(messages: List[types.Message], state: FSMContext):
+    file_ids = []
 
-# @andijon_router.message(AndijonHomeSotishHovli.images)
-# async def starter(message: Message, album: List[Message], state: FSMContext):
-#     file_ids = []
+    for message in messages:
+        photos = message.photo
 
-#     for photo in album:
-#         if photo:
-#             file_id = photo.photo[-1].file_id
-#             file_ids.append(file_id)
-#             print(file_id)
-    
-#     print(file_ids)
+        first_photo_size = photos[0]
+        first_file_id = first_photo_size.file_id
 
-#     await state.update_data(images=file_ids)
-
-
-#     await message.answer(umumiyMaydonyoz, parse_mode="HTML")
-#     await state.set_state(AndijonHomeSotishHovli.umumiyMaydon)
-    
-@andijon_router.message(AndijonHomeSotishHovli.images)
-async def starter(message: Message, state: FSMContext):
-    text = message.text
-
+        file_ids.append(first_file_id)
 
     await state.update_data({
-        "images": text
+        "images": file_ids
     })
 
-
-    await message.answer(umumiyMaydonyoz, parse_mode="HTML")
+    await bot.send_message(chat_id=messages[-1].chat.id, text=umumiyMaydonyoz, parse_mode="HTML")
+    # await messages[-1].answer(umumiyMaydonyoz, parse_mode="HTML")
     await state.set_state(AndijonHomeSotishHovli.umumiyMaydon)
 
 
@@ -509,7 +502,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     })
 
     chat_id = message.chat.id
-    # media_group = types.MediaGroup()
+    media_group = MediaGroupBuilder()
 
     data = await state.get_data()
 
@@ -550,13 +543,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = " ".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        # media_group.attach_photo(photos[0], caption=cyrillic_text)
+        media_group.add_photo(photos[0], caption=cyrillic_text)
 
-        # for file_id in photos[1:]:
-        #     media_group.attach_photo(f"{file_id}")
+        for file_id in photos[1:]:
+            media_group.add_photo(f"{file_id}")
 
-        # await bot.send_media_group(chat_id=chat_id, media=media_group)
-        await bot.send_message(chat_id=chat_id, text=cyrillic_text)
+        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
         await state.set_state(AndijonHomeSotishHovli.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
@@ -594,13 +586,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = " ".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        # media_group.attach_photo(photos[0], caption=cyrillic_text)
+        media_group.add_photo(photos[0], caption=cyrillic_text)
 
-        # for file_id in photos[1:]:
-        #     media_group.attach_photo(f"{file_id}")
+        for file_id in photos[1:]:
+            media_group.add_photo(f"{file_id}")
 
-        # await bot.send_media_group(chat_id=chat_id, media=media_group)
-        await bot.send_message(chat_id=chat_id, text=cyrillic_text)
+        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
         await state.set_state(AndijonHomeSotishHovli.check)
 
@@ -639,13 +630,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = " ".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        # media_group.attach_photo(photos[0], caption=cyrillic_text)
+        media_group.add_photo(photos[0], caption=cyrillic_text)
 
-        # for file_id in photos[1:]:
-        #     media_group.attach_photo(f"{file_id}")
+        for file_id in photos[1:]:
+            media_group.add_photo(f"{file_id}")
 
-        # await bot.send_media_group(chat_id=chat_id, media=media_group)
-        await bot.send_message(chat_id=chat_id, text=cyrillic_text)
+        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
         await state.set_state(AndijonHomeSotishHovli.check)
 
@@ -685,13 +675,12 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = " ".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        # media_group.attach_photo(photos[0], caption=cyrillic_text)
+        media_group.add_photo(photos[0], caption=cyrillic_text)
 
-        # for file_id in photos[1:]:
-        #     media_group.attach_photo(f"{file_id}")
+        for file_id in photos[1:]:
+            media_group.add_photo(f"{file_id}")
 
-        # await bot.send_media_group(chat_id=chat_id, media=media_group)
-        await bot.send_message(chat_id=chat_id, text=cyrillic_text)
+        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
         await state.set_state(AndijonHomeSotishHovli.check)
 
@@ -701,11 +690,11 @@ async def check(message: types.Message, state: FSMContext):
     mycheck = message.text
     chat_id = message.chat.id
 
-    # media_group = types.MediaGroup()
+    media_group = MediaGroupBuilder()
 
     if mycheck == "✅ Эълонни жойлаш":
         data = await state.get_data()
-        # photos = data['images']
+        photos = data['images']
 
         if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -741,13 +730,13 @@ async def check(message: types.Message, state: FSMContext):
             stringify = " ".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            # media_group.attach_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
 
-            # for file_id in photos[1:]:
-            #     media_group.attach_photo(f"{file_id}")
+            for file_id in photos[1:]:
+                media_group.add_photo(f"{file_id}")
 
-            # await bot.send_media_group(chat_id=channel_id, media=media_group)
-            await bot.send_message(chat_id=channel_id, text=cyrillic_text)
+            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
@@ -786,13 +775,13 @@ async def check(message: types.Message, state: FSMContext):
             stringify = " ".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            # media_group.attach_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
 
-            # for file_id in photos[1:]:
-            #     media_group.attach_photo(f"{file_id}")
+            for file_id in photos[1:]:
+                media_group.add_photo(f"{file_id}")
 
-            # await bot.send_media_group(chat_id=channel_id, media=media_group)
-            await bot.send_message(chat_id=channel_id, text=cyrillic_text)
+            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
@@ -830,13 +819,13 @@ async def check(message: types.Message, state: FSMContext):
             stringify = " ".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            # media_group.attach_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
 
-            # for file_id in photos[1:]:
-            #     media_group.attach_photo(f"{file_id}")
+            for file_id in photos[1:]:
+                media_group.add_photo(f"{file_id}")
 
-            # await bot.send_media_group(chat_id=channel_id, media=media_group)
-            await bot.send_message(chat_id=channel_id, text=cyrillic_text)
+            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
         else:
@@ -875,13 +864,13 @@ async def check(message: types.Message, state: FSMContext):
             stringify = " ".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            # media_group.attach_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
 
-            # for file_id in photos[1:]:
-            #     media_group.attach_photo(f"{file_id}")
+            for file_id in photos[1:]:
+                media_group.add_photo(f"{file_id}")
 
-            # await bot.send_media_group(chat_id=channel_id, media=media_group)
-            await bot.send_message(chat_id=channel_id, text=cyrillic_text)
+            await bot.send_media_group(chat_id=channel_id, media=media_group.build())
+            
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
             await state.clear()
 
