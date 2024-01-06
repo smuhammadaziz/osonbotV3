@@ -323,3 +323,11 @@ class DocumentHaveData(CallbackData, prefix="bor"):
 
 class DocumentNotData(CallbackData, prefix="yoq"):
     word: str
+
+# =========================================================
+# =========================================================
+
+class GoBackData(CallbackData, prefix="ortga"):
+    word: str
+
+    

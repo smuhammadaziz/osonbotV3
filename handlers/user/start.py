@@ -11,7 +11,7 @@ from aiogram.fsm.state import any_state
 
 from loader import bot, dp
 
-from keyboards.inline.data import StartData
+from keyboards.inline.data import StartData, GoBackData
 
 user_router = Router()
 
@@ -65,7 +65,7 @@ async def restart(message: Message, state: FSMContext):
 async def ortga(message: Message):
     await message.answer("<b> Ҳудудни танланг: </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
-@user_router.callback_query(F.text=="hometypeortgabutton")
+@user_router.callback_query(GoBackData.filter(F.word=="ortga"))
 async def kvartirasotish(call: CallbackQuery):
     await call.answer("Категорияни танланг")
     await call.message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
