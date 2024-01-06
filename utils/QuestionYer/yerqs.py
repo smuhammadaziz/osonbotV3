@@ -1,5 +1,18 @@
 # Hovli Questions
-channel_id = -1001747207701
+andijon_id = -1001354536408
+buxoro_id = -1001931707915
+fargona_id = -1001936259107
+jizzax_id = -1001907168333
+namangan_id = -1001979059129
+navoiy_id = -1001861296377
+qashqa_id = -1001964423395
+qoraqalpoq_id = -1001827833589
+samarqand_id = -1001525881310
+sirdaryo_id = -1001397117335
+surxon_id = -1001705636608
+toshsh_id = -1001710909701
+toshvil_id = -1001916481063
+xorazm_id = -1001766589776
 
 hovlitanlandi = "Yer tanlandi"
 
