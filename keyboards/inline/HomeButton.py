@@ -200,6 +200,6 @@ link_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
 
 start_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                     inline_keyboard=[
-                                        [InlineKeyboardButton(text="бошидан бошлаш",
+                                        [InlineKeyboardButton(text="бошидан ёзиш",
                                                               callback_data=StartData(word="start").pack())]
                                     ])
