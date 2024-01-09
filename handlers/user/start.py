@@ -13,6 +13,8 @@ from loader import bot, dp
 
 from keyboards.inline.data import StartData, GoBackData
 
+from aiogram.types.reply_keyboard_remove import ReplyKeyboardRemove
+
 user_router = Router()
 
 
@@ -36,29 +38,34 @@ async def starter_bot(call: CallbackQuery, state: FSMContext, callback_data: Sta
 @user_router.message(F.text=="START", any_state)
 async def first(message: Message, state: FSMContext):
     await state.clear()
+    await message.answer("START", reply_markup=ReplyKeyboardRemove())
     await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
 @user_router.message(F.text=="start", any_state)
 async def first(message: Message, state: FSMContext):
     await state.clear()
+    await message.answer("start", reply_markup=ReplyKeyboardRemove())
     await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
 @user_router.message(F.text=="/start", any_state)
 async def first(message: Message, state: FSMContext):
     await state.clear()
+    await message.answer("START", reply_markup=ReplyKeyboardRemove())
     await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
 @user_router.message(F.text=="/stop", any_state)
 async def stop(message: Message, state: FSMContext):
     await state.clear()
+    await message.answer("START", reply_markup=ReplyKeyboardRemove())
     await message.answer("Bot is stopping", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 @user_router.message(F.text=="/restart", any_state)
 async def restart(message: Message, state: FSMContext):
     await state.clear()
+    await message.answer("START", reply_markup=ReplyKeyboardRemove())
     await message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 @user_router.message(F.text=="⬅️ Ортга")
@@ -68,4 +75,5 @@ async def ortga(message: Message):
 @user_router.callback_query(GoBackData.filter(F.word=="ortga"))
 async def kvartirasotish(call: CallbackQuery):
     await call.answer("Категорияни танланг")
+    await call.message.answer("START", reply_markup=ReplyKeyboardRemove())
     await call.message.answer("<b> Ҳудудни танланг:  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
