@@ -266,7 +266,8 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
         "valyuta": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
+                                reply_markup=types.ReplyKeyboardRemove)
 
     await state.set_state(QoraqalpoqYerSotish.narxi)
 
@@ -280,7 +281,8 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
         "valyuta": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
+                                reply_markup=types.ReplyKeyboardRemove)
 
     await state.set_state(QoraqalpoqYerSotish.narxi)
 
