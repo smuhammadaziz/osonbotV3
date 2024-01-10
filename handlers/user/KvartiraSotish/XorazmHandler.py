@@ -342,7 +342,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
-                                reply_markup=types.ReplyKeyboardRemove)
+                                reply_markup=types.ReplyKeyboardRemove())
 
     await state.set_state(XorazmHomeSotish.narxi)
 
@@ -357,7 +357,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
-                                reply_markup=types.ReplyKeyboardRemove)
+                                reply_markup=types.ReplyKeyboardRemove())
 
     await state.set_state(XorazmHomeSotish.narxi)
 
