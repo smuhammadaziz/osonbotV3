@@ -11,7 +11,7 @@ start = ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, one_time_keyboard
                              ])
 
 
-checkbtn = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2,one_time_keyboard=True,
+checkbtn = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2,one_time_keyboard=True, is_persistent=True,
                                keyboard=[
                                    [KeyboardButton(text="✅ Эълонни жойлаш"),
                                     KeyboardButton(text="❌ Эълонни қайтадан ёзиш")],
