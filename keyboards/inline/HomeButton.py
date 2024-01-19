@@ -86,8 +86,7 @@ samarqandHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                      inline_keyboard=[
                                          [InlineKeyboardButton(text="Квартира", callback_data=SamarqandKvartiraData(word="samarqandkv").pack()),
                                           InlineKeyboardButton(text="Ховли Участка", callback_data=SamarqandHovliData(word="samarqandhovli").pack())],
-                                         [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SamarqandYerData(word="samarqandyer").pack())],
-                                         [InlineKeyboardButton(text="⬅️ Ортга", callback_data=GoBackData(word="ortga").pack())]
+                                         [InlineKeyboardButton(text="Қуруқ Ер", callback_data=SamarqandYerData(word="samarqandyer").pack())]
                                      ])
 
 buxoroHome = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
