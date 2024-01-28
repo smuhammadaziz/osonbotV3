@@ -117,7 +117,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
         "oshxona": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.hammom)
 
 
@@ -130,7 +130,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
         "oshxona": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=xammomyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.hammom)
 
 
@@ -144,7 +144,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id,
-                           text=nechaQavatyoz)
+                           text=nechaQavatyoz, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.qavat)
 
 
@@ -158,7 +158,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id,
-                           text=nechaQavatyoz)
+                           text=nechaQavatyoz, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.qavat)
 
 
@@ -194,7 +194,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
+                           reply_markup=jihozlarButton, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.jihozlar)
 
 
@@ -207,7 +207,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
+                           reply_markup=jihozlarButton, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.jihozlar)
 
 
@@ -220,7 +220,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
+                           reply_markup=jihozlarButton, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.jihozlar)
 
 
@@ -234,7 +234,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=jihozlaryoz,
-                           reply_markup=jihozlarButton)
+                           reply_markup=jihozlarButton, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.jihozlar)
 
 
@@ -247,7 +247,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
         "jihozlar": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.gaz)
 
 
@@ -259,7 +259,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
         "jihozlar": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=gazyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.gaz)
 
 
@@ -274,7 +274,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         "gaz": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.svet)
 
 
@@ -287,21 +287,21 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         "gaz": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=svetyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.svet)
 
 # ========================================================================
     
 @samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
-    text = "Свет ✔️"
+    text = " Свет ✔️"
     await callback_query.answer("Танланди")
 
     await state.update_data({
         "svet": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.suv)
 
 
@@ -314,21 +314,21 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         "svet": text
     })
 
-    await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq)
+    await bot.send_message(chat_id=callback_query.message.chat.id, text=suvyoz, reply_markup=borYoq, parse_mode="HTML")
     await state.set_state(SamarqandHomeSotishHovli.suv)
 
 # ============================================================================
 
 @samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
-    text = "Сув ✔️"
+    text = " Сув ✔️"
     await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "suv": text
     })
 
-    await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
+    await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.kanal)
 
@@ -342,7 +342,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         "suv": text
     })
 
-    await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq)
+    await callback_query.message.answer(text=kanalizatsiyayoz, reply_markup=borYoq, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.kanal)
 
@@ -350,14 +350,14 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 
 @samarqand_router.callback_query(BorData.filter(F.word=="bor"), SamarqandHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
-    text = "Канализация  ✔️"
+    text = " Канализация ✔️"
     await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "kanal": text
     })
 
-    await callback_query.message.answer(text=qoshimchaMalumotyoz, reply_markup=otkazishButton)
+    await callback_query.message.answer(text=qoshimchaMalumotyoz, reply_markup=otkazishButton, parse_mode="HTML")
 
     if callback_query.message.text == "⏭️ Кейингиси":
         await state.update_data({
@@ -377,7 +377,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
         "kanal": text
     })
 
-    await callback_query.message.answer(text=qoshimchaMalumotyoz, reply_markup=otkazishButton)
+    await callback_query.message.answer(text=qoshimchaMalumotyoz, reply_markup=otkazishButton, parse_mode="HTML")
 
     if callback_query.message.text == "⏭️ Кейингиси":
         await state.update_data({
@@ -395,7 +395,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     await state.update_data({
         "qoshimchaMalumot": text
     })
-    await message.answer(text=valyutayoz, reply_markup=valyutaButton)
+    await message.answer(text=valyutayoz, reply_markup=valyutaButton, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.valyuta)
 
@@ -412,7 +412,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
-                                reply_markup=types.ReplyKeyboardRemove())
+                                reply_markup=types.ReplyKeyboardRemove(), parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.narxi)
 
@@ -427,7 +427,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
     })
 
     await bot.send_message(chat_id=callback_query.message.chat.id, text=narxiyoz,
-                            reply_markup=types.ReplyKeyboardRemove())
+                           reply_markup=types.ReplyKeyboardRemove(), parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.narxi)
 
@@ -450,7 +450,7 @@ async def kvartira_narxi(message: types.Message, state: FSMContext):
         "narxi": number
     })
 
-    await message.answer(text=manzilyoz)
+    await message.answer(text=manzilyoz, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.manzil)
 
@@ -461,7 +461,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     await state.update_data({
         "manzil": text
     })
-    await message.answer(text=moljalyoz)
+    await message.answer(text=moljalyoz, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.moljal)
 
@@ -472,7 +472,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     await state.update_data({
         "moljal": text
     })
-    await message.answer(text=telraqam1yoz)
+    await message.answer(text=telraqam1yoz, parse_mode="HTML")
 
     await state.set_state(SamarqandHomeSotishHovli.telNumberOne)
 
@@ -485,7 +485,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         "telNumberOne": telNumber
     })
 
-    await message.answer(text=telraqam2yoz, reply_markup=otkazishButton)
+    await message.answer(text=telraqam2yoz, reply_markup=otkazishButton, parse_mode="HTML")
     if message.text == "⏭️ Кейингиси":
         await state.update_data({
             "telNumberTwo": ""
@@ -523,10 +523,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n\n"
+        data10 = " бор\n\n"
         data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
-        data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+        data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
         result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
@@ -541,7 +541,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
             array.append(item)
 
-        stringify = " ".join(array)
+        stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
         media_group.add_photo(photos[0], caption=cyrillic_text)
@@ -550,7 +550,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
             media_group.add_photo(f"{file_id}")
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
-        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
+        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(SamarqandHomeSotishHovli.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -565,10 +565,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n\n"
+        data10 = " бор\n\n"
         data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
-        data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+        data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
@@ -584,7 +584,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
             array.append(item)
 
-        stringify = " ".join(array)
+        stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
         media_group.add_photo(photos[0], caption=cyrillic_text)
@@ -593,7 +593,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
             media_group.add_photo(f"{file_id}")
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
-        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
+        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(SamarqandHomeSotishHovli.check)
 
     elif data['telNumberTwo'] == "⏭️ Кейингиси":
@@ -609,11 +609,11 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n"
+        data10 = " бор\n"
         data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
         data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
-        data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+        data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
         result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
@@ -628,7 +628,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
             array.append(item)
 
-        stringify = " ".join(array)
+        stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
         media_group.add_photo(photos[0], caption=cyrillic_text)
@@ -637,7 +637,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
             media_group.add_photo(f"{file_id}")
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
-        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
+        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(SamarqandHomeSotishHovli.check)
 
     else:
@@ -653,11 +653,11 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         svet = data['svet']
         suv = data['suv']
         kanal = data['kanal']
-        data10 = "бор \n"
+        data10 = " бор\n"
         data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
         data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
         data13 = "📌 Манзил: " + data['manzil'] + "\n"
-        data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+        data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
@@ -673,7 +673,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
             array.append(item)
 
-        stringify = " ".join(array)
+        stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
         media_group.add_photo(photos[0], caption=cyrillic_text)
@@ -682,7 +682,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
             media_group.add_photo(f"{file_id}")
 
         await bot.send_media_group(chat_id=chat_id, media=media_group.build())
-        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn)
+        await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(SamarqandHomeSotishHovli.check)
 
 
@@ -710,10 +710,10 @@ async def check(message: types.Message, state: FSMContext):
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n\n"
+            data10 = " бор\n\n"
             data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
-            data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+            data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
             result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
@@ -728,7 +728,7 @@ async def check(message: types.Message, state: FSMContext):
 
                 array.append(item)
 
-            stringify = " ".join(array)
+            stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
             media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
@@ -738,7 +738,7 @@ async def check(message: types.Message, state: FSMContext):
 
             await bot.send_media_group(chat_id=samarqand_id, media=media_group.build())
             
-            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
+            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
 
         elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
@@ -754,10 +754,10 @@ async def check(message: types.Message, state: FSMContext):
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n\n"
+            data10 = " бор\n\n"
             data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
-            data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+            data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
@@ -773,7 +773,7 @@ async def check(message: types.Message, state: FSMContext):
 
                 array.append(item)
 
-            stringify = " ".join(array)
+            stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
             media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
@@ -783,7 +783,7 @@ async def check(message: types.Message, state: FSMContext):
 
             await bot.send_media_group(chat_id=samarqand_id, media=media_group.build())
             
-            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
+            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -798,11 +798,11 @@ async def check(message: types.Message, state: FSMContext):
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n"
+            data10 = " бор\n"
             data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
             data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
-            data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+            data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
             result = [samarqandregion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
@@ -817,7 +817,7 @@ async def check(message: types.Message, state: FSMContext):
 
                 array.append(item)
 
-            stringify = " ".join(array)
+            stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
             media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
@@ -827,7 +827,7 @@ async def check(message: types.Message, state: FSMContext):
 
             await bot.send_media_group(chat_id=samarqand_id, media=media_group.build())
             
-            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
+            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         else:
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -842,11 +842,11 @@ async def check(message: types.Message, state: FSMContext):
             svet = data['svet']
             suv = data['suv']
             kanal = data['kanal']
-            data10 = "бор \n"
+            data10 = " бор\n"
             data11 = "🔷 Қўшимча маълумот: " + data['qoshimchaMalumot'] + "\n\n"
             data12 = "💰 Нархи: " + data['narxi'] + data['valyuta'] + "\n\n"
             data13 = "📌 Манзил: " + data['manzil'] + "\n"
-            data14 = "📌 Мўлжал:  " + data['moljal'] + "\n\n"
+            data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
@@ -862,7 +862,7 @@ async def check(message: types.Message, state: FSMContext):
 
                 array.append(item)
 
-            stringify = " ".join(array)
+            stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
             media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
@@ -872,10 +872,10 @@ async def check(message: types.Message, state: FSMContext):
 
             await bot.send_media_group(chat_id=samarqand_id, media=media_group.build())
             
-            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start)
+            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
 
     if mycheck == "❌ Эълонни қайтадан ёзиш":
-        await bot.send_message(chat_id=chat_id, text="❌ Эълон қабул қилинмади")
-        await bot.send_message(chat_id=chat_id, text="Еълон бериш учун қайтадан уриниб кўринг", reply_markup=start)
+        await bot.send_message(chat_id=chat_id, text="<b>❌ Эълон қабул қилинмади</b>", parse_mode="HTML")
+        await bot.send_message(chat_id=chat_id, text="<b>Еълон бериш учун қайтадан уриниб кўринг</b>", reply_markup=start, parse_mode="HTML")
         await state.clear()
