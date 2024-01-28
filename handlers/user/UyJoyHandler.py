@@ -81,7 +81,7 @@ async def kvartirasotish(call: CallbackQuery, callback_data: SirdaryoData):
 @uyJoy_router.callback_query(SurxondaryoData.filter(F.word=="surxon"))
 async def kvartirasotish(call: CallbackQuery, callback_data: SurxondaryoData):
     await call.answer("Surxondaryo tanlandi")
-    await call.message.answer("<b> Уй-жой турини танланг!  </b>", reply_markup=surxonHome, parse_mode="HTML")
+    await call.message.answer("<b> Уй-жой турини танланг  </b>", reply_markup=surxonHome, parse_mode="HTML")
 
 # =======================================12========================================
 @uyJoy_router.callback_query(toshkentshData.filter(F.word=="toshkent"))
