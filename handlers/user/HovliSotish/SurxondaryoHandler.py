@@ -512,7 +512,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     
     if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
         hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
         data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -554,7 +554,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await state.set_state(SurxondaryoHomeSotishHovli.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
         hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
         data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -598,7 +598,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
     elif data['telNumberTwo'] == "⏭️ Кейингиси":
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
         hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
         data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -642,7 +642,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 
     else:
         data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-        data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
         hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
         data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -699,7 +699,7 @@ async def check(message: types.Message, state: FSMContext):
 
         if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
             hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
             data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -743,7 +743,7 @@ async def check(message: types.Message, state: FSMContext):
 
         elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
             hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
             data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -787,7 +787,7 @@ async def check(message: types.Message, state: FSMContext):
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
             hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
             data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"
@@ -831,7 +831,7 @@ async def check(message: types.Message, state: FSMContext):
             await state.clear()
         else:
             data3 = "🔷 Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
-            data4 = "🔷 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data4 = "🔷 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             oshxona = "🔷 Ошхонаси: " + data['oshxona'] + "\n"
             hammom = "🔷 Ҳаммоми: " + data['hammom'] + "\n"
             data6 = "🔷 Неча қаватли: " + data['qavat'] + "-қаватли уй" + "\n"

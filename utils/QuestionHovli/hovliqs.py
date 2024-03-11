@@ -18,7 +18,7 @@ hovlitanlandi = "Hovli tanlandi"
 
 rasmlar = "<b>Ҳовлининг расмларини жойланг</b>\n(2 - 10 тагача)"
 umumiyMaydonyoz = "<b>Ҳовлининг майдонини ёзинг</b>\n(фақат рақам ёзилади)"
-faqatRaqamyoz = "❗ Фақат рақамда ёзинг"
+faqatRaqamyoz = "Фақат рақамда ёзинг"
 xonalaryoz = "<b>Хоналар сонини ёзинг</b>\n(фақат рақам ёзилади)"
 oshxonayoz = "<b>Ошхона борми?</b>"
 xammomyoz = "<b>Ҳаммоми борми?</b>"
@@ -66,7 +66,7 @@ success_text = "<b>✅ Эълон Каналга Жойланди</b>"
 # data31 = "✅ Ўзингиз Админ бўлинг  \n\n"
 data32 = "<b>✅ Эълон Бериш БЕПУЛ❗️  \n\n</b>"
 data33 = "       ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻\n"
-data34 = "    │<a href='https://t.me/OsonBozorBot'><b>    ЭЪЛОН БЕРИШ    </b></a>│\n"
+data34 = "    │<a href='https://t.me/osonkuBot'><b>    ЭЪЛОН БЕРИШ    </b></a>│\n"
 data35 = "       ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻\n\n"
 
 

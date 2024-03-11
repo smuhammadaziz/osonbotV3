@@ -440,8 +440,8 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
     photos = data['images']
 
     if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
-        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-        data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+        data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
         data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
         data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -479,8 +479,8 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(ToshkentshHomeSotish.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
-        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-        data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+        data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
         data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
         data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -520,8 +520,8 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await state.set_state(ToshkentshHomeSotish.check)
 
     elif data['telNumberTwo'] == "⏭️ Кейингиси":
-        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-        data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+        data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
         data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
         data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -561,8 +561,8 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         await state.set_state(ToshkentshHomeSotish.check)
 
     else:
-        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-        data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+        data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+        data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
         data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
         data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
         data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -615,8 +615,8 @@ async def check(message: types.Message, state: FSMContext):
         photos = data['images']
 
         if data['qoshimchaMalumot'] == "⏭️ Кейингиси" and data['telNumberTwo'] == "⏭️ Кейингиси":
-            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-            data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+            data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
             data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
             data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -655,8 +655,8 @@ async def check(message: types.Message, state: FSMContext):
             await state.clear()
 
         elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
-            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-            data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+            data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
             data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
             data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -695,8 +695,8 @@ async def check(message: types.Message, state: FSMContext):
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
-            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-            data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+            data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
             data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
             data7 = "🔶 Ремонти: " + data['remont'] + "\n"
@@ -735,8 +735,8 @@ async def check(message: types.Message, state: FSMContext):
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         else:
-            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + " m²" + "\n"
-            data4 = "🔶 Хоналар сони: " + data['xonalar'] + " та" + "\n"
+            data3 = "🔶 Умумий майдон: " + data['umumiyMaydon'] + "-m²" + "\n"
+            data4 = "🔶 Хоналар сони: " + data['xonalar'] + "-та" + "\n"
             data5 = "🔶 Қавати: " + data['qavat'] + "-қават" + "\n"
             data6 = "🔶 Неча қаватли: " + data['qavatlik'] + "-қаватли" + "\n"
             data7 = "🔶 Ремонти: " + data['remont'] + "\n"
