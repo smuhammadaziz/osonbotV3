@@ -42,7 +42,7 @@ andijon_router = Router()
 
 @andijon_router.callback_query(AndijonHovliData.filter(F.word=="andijonhovli"))
 async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: AndijonHovliData):
-    await callback_query.answer(hovlitanlandi)
+    # await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
 
     await state.set_state(AndijonHomeSotishHovli.images)
@@ -111,7 +111,7 @@ async def umumiymaydon(message: Message, state: FSMContext):
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "oshxona": text
@@ -124,7 +124,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "oshxona": text
@@ -137,7 +137,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "hammom": text
@@ -151,7 +151,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     
     await state.update_data({
         "hammom": text
@@ -188,7 +188,7 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
 @andijon_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), AndijonHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YevroremontData):
     text = "Евроремонт"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -201,7 +201,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), AndijonHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirlangantData):
     text = "Таъмирланган"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -214,7 +214,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(OrtachaData.filter(F.word=="ortacha"), AndijonHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: OrtachaData):
     text = "Ўртача"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -227,7 +227,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), AndijonHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirsizData):
     text = "Таъмирсиз"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -242,7 +242,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(MavjudData.filter(F.word=="mavjud"), AndijonHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: MavjudData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "jihozlar": text
     })
@@ -254,7 +254,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), AndijonHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: JihozlarsizData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "jihozlar": text
     })
@@ -268,7 +268,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Газ ✔️"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "gaz": text
@@ -281,7 +281,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "gaz": text
@@ -295,7 +295,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Свет ✔️"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "svet": text
@@ -308,7 +308,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "svet": text
@@ -322,7 +322,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Сув ✔️"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "suv": text
@@ -336,7 +336,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "suv": text
@@ -351,7 +351,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(BorData.filter(F.word=="bor"), AndijonHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Канализация ✔️"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "kanal": text
@@ -371,7 +371,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @andijon_router.callback_query(YoqData.filter(F.word=="yoq"), AndijonHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "kanal": text
@@ -405,7 +405,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 @andijon_router.callback_query(USDData.filter(F.word=="usd"), AndijonHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: USDData):
     text = " $"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "valyuta": text
@@ -420,7 +420,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @andijon_router.callback_query(SUMData.filter(F.word=="sum"), AndijonHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: SUMData):
     text = " сўм"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "valyuta": text

@@ -42,7 +42,7 @@ jizzax_router = Router()
 
 @jizzax_router.callback_query(JizzaxHovliData.filter(F.word=="jizzaxhovli"))
 async def first(callback_query: CallbackQuery, state: FSMContext, callback_data: JizzaxHovliData):
-    await callback_query.answer(hovlitanlandi)
+    # await callback_query.answer(hovlitanlandi)
     await callback_query.message.answer(rasmlar, parse_mode="HTML")
 
     await state.set_state(JizzaxHomeSotishHovli.images)
@@ -111,7 +111,7 @@ async def umumiymaydon(message: Message, state: FSMContext):
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "oshxona": text
@@ -124,7 +124,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.oshxona)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "oshxona": text
@@ -137,7 +137,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "hammom": text
@@ -151,7 +151,7 @@ async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_da
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.hammom)
 async def kvartira(callback_query: CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     
     await state.update_data({
         "hammom": text
@@ -188,7 +188,7 @@ async def umumiymaydon(message: types.Message, state: FSMContext):
 @jizzax_router.callback_query(YevroremontData.filter(F.word=="yevroremont"), JizzaxHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YevroremontData):
     text = "Евроремонт"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -201,7 +201,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(TamirlangantData.filter(F.word=="tamirlangan"), JizzaxHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirlangantData):
     text = "Таъмирланган"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -214,7 +214,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(OrtachaData.filter(F.word=="ortacha"), JizzaxHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: OrtachaData):
     text = "Ўртача"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -227,7 +227,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(TamirsizData.filter(F.word=="tamirsiz"), JizzaxHomeSotishHovli.remont)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: TamirsizData):
     text = "Таъмирсиз"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "remont": text
     })
@@ -242,7 +242,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(MavjudData.filter(F.word=="mavjud"), JizzaxHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: MavjudData):
     text = "бор"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "jihozlar": text
     })
@@ -254,7 +254,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(JihozlarsizData.filter(F.word=="jihozlarsiz"), JizzaxHomeSotishHovli.jihozlar)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: JihozlarsizData):
     text = "йўқ"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
     await state.update_data({
         "jihozlar": text
     })
@@ -268,7 +268,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = "Газ ✔️"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "gaz": text
@@ -281,7 +281,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.gaz)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "gaz": text
@@ -295,7 +295,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Свет ✔️"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "svet": text
@@ -308,7 +308,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.svet)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Танланди")
+    # await callback_query.answer("Танланди")
 
     await state.update_data({
         "svet": text
@@ -322,7 +322,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Сув ✔️"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "suv": text
@@ -336,7 +336,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.suv)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "suv": text
@@ -351,7 +351,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(BorData.filter(F.word=="bor"), JizzaxHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: BorData):
     text = " Канализация ✔️"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "kanal": text
@@ -371,7 +371,7 @@ async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callba
 @jizzax_router.callback_query(YoqData.filter(F.word=="yoq"), JizzaxHomeSotishHovli.kanal)
 async def xonalar(callback_query: types.CallbackQuery, state: FSMContext, callback_data: YoqData):
     text = "doesnotexist"
-    await callback_query.answer("Tanlandi")
+    # await callback_query.answer("Tanlandi")
 
     await state.update_data({
         "kanal": text
@@ -405,7 +405,7 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
 @jizzax_router.callback_query(USDData.filter(F.word=="usd"), JizzaxHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: USDData):
     text = " $"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "valyuta": text
@@ -420,7 +420,7 @@ async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callb
 @jizzax_router.callback_query(SUMData.filter(F.word=="sum"), JizzaxHomeSotishHovli.valyuta)
 async def kvartira(callback_query: types.CallbackQuery, state: FSMContext, callback_data: SUMData):
     text = " сўм"
-    await callback_query.answer("Pressed")
+    # await callback_query.answer("Pressed")
 
     await state.update_data({
         "valyuta": text
