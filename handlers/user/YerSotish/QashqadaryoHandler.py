@@ -34,7 +34,8 @@ mode = "Markdown"
 
 from aiogram_media_group import media_group_handler
 
-from aiogram.utils.media_group import MediaGroupBuilder
+# from aiogram.utils.media_group import MediaGroupBuilder
+from utils.media_group import MediaGroupBuilder
 
 
 qashqa_yer_router = Router()
