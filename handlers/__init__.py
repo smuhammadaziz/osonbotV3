@@ -55,6 +55,8 @@ from handlers.user.YerSotish.ToshkentVilHandler import toshvil_yer_router
 from handlers.user.YerSotish.XorazmHandler import xorazm_yer_router
 
 
+from handlers.groups.sendMessage import group_router
+
 from aiogram import Router
 from typing import NoReturn, List
 
@@ -68,7 +70,8 @@ routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_route
     andijon_yer_router, buxoro_yer_router, fargona_yer_router, jizzax_yer_router, \
     namangan_yer_router, navoiy_yer_router, qashqa_yer_router, qoraqalpoq_yer_router, \
     samarqand_yer_router, sirdaryo_yer_router, surxon_yer_router, toshsh_yer_router, \
-    toshvil_yer_router, xorazm_yer_router    ]
+    toshvil_yer_router, xorazm_yer_router, \
+    group_router    ]
 
 
 

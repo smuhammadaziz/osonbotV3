@@ -3,12 +3,19 @@ from utils.set_bot_commands import set_default_commands
 from aiogram import Dispatcher, Bot, Router
 from aiogram.fsm.storage.memory import MemoryStorage
 
+from loader import db
+
 
 from asyncio import run
 from pathlib import Path
 from loguru import logger
 from dotenv import load_dotenv
 
+async def database_connected():
+    # Ma'lumotlar bazasini yaratamiz:
+    await db.create()
+    # await db.drop_users()
+    # await db.create_table_users()
 
 
 async def main() -> None:
@@ -23,8 +30,14 @@ async def main() -> None:
     bot = Bot(config.BOT_TOKEN)
     register_handlers(dp)
 
+    
+
     logger.info('Bot started')
     await set_default_commands(bot)
+
+    await database_connected()
+    logger.info("Database connected")
+
     await dp.start_polling(bot)
     logger.info('Bot stopped')
 
