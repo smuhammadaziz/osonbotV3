@@ -24,7 +24,7 @@ from keyboards.inline.data import USDData, SUMData
 from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import GoBackData
 from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
-
+from keyboards.inline.data import AdminXabarYuborish
 
 allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                           inline_keyboard=[
@@ -194,4 +194,9 @@ group_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                       inline_keyboard=[
                                           [InlineKeyboardButton(text="Тасдиқлаш", callback_data=Tasdiqlash(word=f"tasdiqlash").pack()), InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilish(word=f"BekorQilish").pack())],
                                           [InlineKeyboardButton(text="Блоклаш", callback_data=Bloklash(word=f"Bloklash").pack()), InlineKeyboardButton(text="Хабар Ёзиш", callback_data=XabarYozish(word=f"XabarYozish").pack())]
-                                      ]) 
+                                      ])
+
+admin = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                             inline_keyboard=[
+                                  [InlineKeyboardButton(text="Barcha kanallarga xabar yuborish", callback_data=AdminXabarYuborish(word="AdminXabar").pack())]
+                             ]) 

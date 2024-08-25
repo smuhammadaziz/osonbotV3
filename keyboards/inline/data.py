@@ -344,3 +344,9 @@ class Bloklash(CallbackData, prefix="Bloklash"):
 
 class XabarYozish(CallbackData, prefix="XabarYozish"):
     word: str
+
+# =========================================================
+# =========================================================
+
+class AdminXabarYuborish(CallbackData, prefix="AdminXabar"):
+    word: str

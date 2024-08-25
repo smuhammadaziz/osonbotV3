@@ -10,7 +10,7 @@ async def set_default_commands(bot: Bot) -> NoReturn:
     ]
 
     group_commands = [
-        BotCommand(command="/show", description="Show menu")
+        BotCommand(command="/show", description="Admin Panel")
     ]
     await bot.set_my_commands(commands=commands, scope=BotCommandScopeAllPrivateChats())
 
