@@ -1,7 +1,6 @@
+import ast
 from typing import List
-
-from aiogram import types, F, Router
-
+from aiogram import Bot, types, F, Router
 from aiogram.types import Message
 
 from aiogram.fsm.context import FSMContext
@@ -11,7 +10,9 @@ from aiogram.types.callback_query import CallbackQuery
 from keyboards.default.JobButton import checkbtn, start
 from keyboards.default.JobButton import otkazishButton
 from keyboards.inline.HomeButton import remontButton, documentButton, valyutaButton, borYoq
-from loader import bot
+from keyboards.inline.HomeButton import group_button
+
+from loader import bot, db
 from states.YerSotish.QoraqalpoqState import QoraqalpoqYerSotish
 
 from transliterate import to_cyrillic
@@ -20,7 +21,7 @@ from utils.QuestionYer.yerqs import hovlitanlandi, rasmlar, umumiyMaydonyoz, faq
     jihozlaryoz, kanalizatsiyayoz, manzilyoz, moljalyoz, narxiyoz, nechaQavatyoz,oshxonayoz, \
     qoshimchaMalumotyoz, remontyoz, suvyoz, svetyoz, telraqam1yoz, telraqam2yoz, valyutayoz, \
     xammomyoz, xonalaryoz, qoraqalpoq_id, check_text, qoraqalpoqregion, data2, data32, data33, \
-    data34, data35, success_text, hujjatlaribormiyoz
+    data34, data35, success_text, hujjatlaribormiyoz, group_id, success_message, fail_message
 
 
 from keyboards.inline.data import QoraqalpoqYerData
@@ -28,14 +29,15 @@ from keyboards.inline.data import QoraqalpoqYerData
 from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import USDData, SUMData
-
+from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
 
 mode = "Markdown"
 
 from aiogram_media_group import media_group_handler
-
-# from aiogram.utils.media_group import MediaGroupBuilder
 from utils.media_group import MediaGroupBuilder
+
+
+from filters.group_chat import IsGroup, IsGroupCall
 
 
 qoraqalpoq_yer_router = Router()
@@ -518,7 +520,7 @@ async def telNumbertwo(message: types.Message, state: FSMContext):
 
 
 @qoraqalpoq_yer_router.message(QoraqalpoqYerSotish.check)
-async def check(message: types.Message, state: FSMContext):
+async def check(message: types.Message, state: FSMContext, bot: Bot):
     mycheck = message.text
     chat_id = message.chat.id
 
@@ -561,9 +563,15 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=qoraqalpoq_id, media=media_group.build())
+            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
+
+            message_id = str(printer[-1].message_id)
+            userId = str(message.chat.id)
+            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+
+            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
-            await state.clear()
+            await state.clear() 
 
         elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
             data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
@@ -599,9 +607,15 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=qoraqalpoq_id, media=media_group.build())
+            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
+
+            message_id = str(printer[-1].message_id)
+            userId = str(message.chat.id)
+            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+
+            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
-            await state.clear()
+            await state.clear() 
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
             data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
             data9 = "♦️ "
@@ -636,9 +650,15 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=qoraqalpoq_id, media=media_group.build())
+            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
+
+            message_id = str(printer[-1].message_id)
+            userId = str(message.chat.id)
+            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+
+            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
-            await state.clear()
+            await state.clear() 
         else:
             data3 = "♦️ Умумий майдон: " + data['umumiyMaydon'] + "-сотих" + "\n"
             data9 = "♦️ "
@@ -674,11 +694,56 @@ async def check(message: types.Message, state: FSMContext):
             for file_id in photos[1:]:
                 media_group.add_photo(f"{file_id}")
 
-            await bot.send_media_group(chat_id=qoraqalpoq_id, media=media_group.build())
-            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
-            await state.clear()
+            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
 
+            message_id = str(printer[-1].message_id)
+            userId = str(message.chat.id)
+            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+
+            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
+            await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
+            await state.clear() 
     if mycheck == "❌ Эълонни қайтадан ёзиш":
         await bot.send_message(chat_id=chat_id, text="<b>❌ Эълон қабул қилинмади</b>", parse_mode="HTML")
         await bot.send_message(chat_id=chat_id, text="<b>Еълон бериш учун қайтадан уриниб кўринг</b>", reply_markup=start, parse_mode="HTML")
         await state.clear()
+
+
+@qoraqalpoq_yer_router.callback_query(IsGroupCall(), Tasdiqlash.filter(F.word == "tasdiqlash"))
+async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
+    chat_id = str(call.message.message_id - 1)
+
+    media_group = MediaGroupBuilder()
+
+    data = await db.yer_get_one_user_data(message_id=chat_id)
+
+    photos_string = data['photos']
+
+    try:
+        photos_list = ast.literal_eval(photos_string)
+
+    except (ValueError, SyntaxError) as e:
+        await bot.send_message(chat_id=call.message.chat.id, text="Xatolik mavjud.")
+        return
+
+    media_group.add_photo(photos_list[0], caption=data['captions'], parse_mode="HTML")
+
+    for file_id in photos_list[1:]:
+        media_group.add_photo(file_id)
+
+    await bot.send_media_group(chat_id=qoraqalpoq_id, media=media_group.build())
+    await bot.send_message(chat_id=int(data['user_id']), text=success_message)
+    await bot.send_message(chat_id=call.message.chat.id, text=success_message)
+    
+
+
+@qoraqalpoq_yer_router.callback_query(IsGroupCall(), BekorQilish.filter(F.word=="BekorQilish"))
+async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
+
+    chat_id = str(call.message.message_id - 1)
+
+
+    data = await db.yer_get_one_user_data(message_id=chat_id)
+
+    await bot.send_message(chat_id=int(data['user_id']), text=fail_message)
+    await bot.send_message(chat_id=call.message.chat.id, text=fail_message)

@@ -1,5 +1,5 @@
 # Hovli Questions
-andijon_id = -1001747207701
+andijon_id = -1001354536408
 buxoro_id = -1001931707915
 fargona_id = -1001936259107
 jizzax_id = -1001907168333
