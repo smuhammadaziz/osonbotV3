@@ -29,7 +29,7 @@ async def bot_start(message: Message):
     if user:
         await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")  
     else:
-        await message.answer("Telefon raqamni tasdiqlang:", parse_mode=ParseMode.MARKDOWN_V2, reply_markup=send_contact) 
+        await message.answer("Телефон рақамингизни тасдиқланг", parse_mode=ParseMode.MARKDOWN_V2, reply_markup=send_contact) 
 
 @user_router.message(F.content_type == ContentType.CONTACT)
 async def check_contact(message: Message):
@@ -49,9 +49,9 @@ async def check_contact(message: Message):
         if user:
             await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
         else:
-            await message.answer("Telefon raqamni tasdiqlang:", parse_mode=ParseMode.MARKDOWN_V2, reply_markup=send_contact) 
+            await message.answer("Телефон рақамингизни тасдиқланг", parse_mode=ParseMode.MARKDOWN_V2, reply_markup=send_contact) 
     except Exception as error:
-        await bot.send_message(chat_id=message.chat.id, text='Telefon raqamni tasdiqlang:') 
+        await bot.send_message(chat_id=message.chat.id, text='Телефон рақамингизни тасдиқланг') 
 
 
 @user_router.callback_query(StartData.filter(F.word=="start"), any_state)
