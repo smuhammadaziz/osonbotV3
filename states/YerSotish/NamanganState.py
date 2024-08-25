@@ -17,3 +17,4 @@ class NamanganYerSotish(StatesGroup):
     telNumberOne = State()
     telNumberTwo = State()
     check = State()
+    regionId = State()

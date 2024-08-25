@@ -22,8 +22,13 @@ create table users(
      phone varchar(100) not null
 );
 
-create table hovli(
-     id text primary key default generate_id(),
+CREATE TABLE yer (
+    id TEXT PRIMARY KEY DEFAULT generate_id(),
+    user_id VARCHAR(255) NOT NULL, -- Match the data type of chat_id in users table
+    photos TEXT NOT NULL,
+    captions TEXT NOT NULL,
+    message_id TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(chat_id) -- Reference chat_id in users table
 );
 
 ------------------------------

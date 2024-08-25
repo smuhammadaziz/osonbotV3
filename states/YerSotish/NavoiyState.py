@@ -17,3 +17,4 @@ class NavoiyYerSotish(StatesGroup):
     telNumberOne = State()
     telNumberTwo = State()
     check = State()
+    regionId = State()

@@ -80,3 +80,11 @@ class Database:
     async def drop_users(self):
         await self.execute("DROP TABLE users", execute=True)
     
+    
+    async def add_yer_data(self, user_id, photos, captions, message_id):
+        sql = "INSERT INTO yer(user_id, photos, captions, message_id) VALUES($1, $2, $3, $4) returning *"
+        return await self.execute(sql, user_id, photos, captions, message_id, fetchrow=True)
+
+    async def yer_get_one_user_data(self, message_id: int):
+        sql = "SELECT * FROM yer WHERE message_id = $1"
+        return await self.execute(sql, message_id, fetchrow=True)

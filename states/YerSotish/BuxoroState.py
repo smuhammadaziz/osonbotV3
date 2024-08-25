@@ -17,3 +17,4 @@ class BuxoroYerSotish(StatesGroup):
     telNumberOne = State()
     telNumberTwo = State()
     check = State()
+    regionId = State()

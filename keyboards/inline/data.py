@@ -330,4 +330,17 @@ class DocumentNotData(CallbackData, prefix="yoq"):
 class GoBackData(CallbackData, prefix="ortga"):
     word: str
 
-    
+# =========================================================
+# =========================================================
+
+class Tasdiqlash(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilish(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class Bloklash(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozish(CallbackData, prefix="XabarYozish"):
+    word: str

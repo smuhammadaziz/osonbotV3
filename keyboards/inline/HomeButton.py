@@ -23,7 +23,7 @@ from keyboards.inline.data import MavjudData, JihozlarsizData
 from keyboards.inline.data import USDData, SUMData
 from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import GoBackData
-
+from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
 
 
 allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
@@ -189,3 +189,9 @@ start_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                         [InlineKeyboardButton(text="бошидан ёзиш",
                                                               callback_data=StartData(word="start").pack())]
                                     ])
+
+group_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=Tasdiqlash(word=f"tasdiqlash").pack()), InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilish(word=f"BekorQilish").pack())],
+                                          [InlineKeyboardButton(text="Блоклаш", callback_data=Bloklash(word=f"Bloklash").pack()), InlineKeyboardButton(text="Хабар Ёзиш", callback_data=XabarYozish(word=f"XabarYozish").pack())]
+                                      ]) 

@@ -17,3 +17,4 @@ class SurxondaryoYerSotish(StatesGroup):
     telNumberOne = State()
     telNumberTwo = State()
     check = State()
+    regionId = State()
