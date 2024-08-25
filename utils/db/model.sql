@@ -14,21 +14,21 @@ $$ LANGUAGE plpgsql;
 
 -- Table
 
-create table users(
-     id text primary key default generate_id(),
-     name text not null,
-     username text not null,
-     chat_id varchar(255) not null,
-     phone varchar(100) not null
+CREATE TABLE users (
+    id TEXT PRIMARY KEY DEFAULT generate_id(),
+    name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    chat_id VARCHAR(255) NOT NULL UNIQUE, -- Add UNIQUE constraint
+    phone VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE yer (
     id TEXT PRIMARY KEY DEFAULT generate_id(),
-    user_id VARCHAR(255) NOT NULL, -- Match the data type of chat_id in users table
+    user_id VARCHAR(255) NOT NULL,
     photos TEXT NOT NULL,
     captions TEXT NOT NULL,
     message_id TEXT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(chat_id) -- Reference chat_id in users table
+    FOREIGN KEY (user_id) REFERENCES users(chat_id)
 );
 
 ------------------------------
