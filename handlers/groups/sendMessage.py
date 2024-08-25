@@ -17,7 +17,22 @@ class SendPoster(StatesGroup):
 # Initialize the router
 group_router = Router()
 
-CHANNEL_IDS = [-1002166239027, -1001747207701]
+CHANNEL_IDS = [
+    -1001354536408,  # andijon_id
+    -1001931707915,  # buxoro_id
+    -1001936259107,  # fargona_id
+    -1001907168333,  # jizzax_id
+    -1001979059129,  # namangan_id
+    -1001861296377,  # navoiy_id
+    -1001964423395,  # qashqa_id
+    -1001933742457,  # qoraqalpoq_id
+    -1001525881310,  # samarqand_id
+    -1001397117335,  # sirdaryo_id
+    -1001705636608,  # surxon_id
+    -1001710909701,  # toshsh_id
+    -1001916481063,  # toshvil_id
+    -1001766589776   # xorazm_id
+]
 
 @group_router.message(IsGroup(), Command('show'))
 async def sendmessage(message: Message):
