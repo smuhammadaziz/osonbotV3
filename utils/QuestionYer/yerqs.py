@@ -14,7 +14,7 @@ toshsh_id = -1001710909701
 toshvil_id = -1001916481063
 xorazm_id = -1001766589776
 
-group_id = -1002212226293
+group_id = -1002234398619
 
 hovlitanlandi = "Yer tanlandi"
 
