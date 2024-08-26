@@ -2,7 +2,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 send_contact = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True, is_persistent=True,
                                    keyboard=[
-                                        [KeyboardButton(text='☎️ Телефон рақамингизни тасдиқлаш', request_contact=True)]
+                                        [KeyboardButton(text='☎️ Телефон рақамни тасдиқлаш', request_contact=True)]
                                    ])
 
 button = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
