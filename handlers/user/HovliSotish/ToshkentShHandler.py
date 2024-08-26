@@ -926,7 +926,7 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     for file_id in photos_list[1:]:
         media_group.add_photo(file_id)
 
-    await bot.send_media_group(chat_id=toshsh_router, media=media_group.build())
+    await bot.send_media_group(chat_id=toshsh_id, media=media_group.build())
     await bot.send_message(chat_id=int(data['user_id']), text=success_message)
     await bot.send_message(chat_id=call.message.chat.id, text=success_message)
     
