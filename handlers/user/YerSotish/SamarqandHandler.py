@@ -569,7 +569,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
 
@@ -613,7 +613,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
@@ -656,7 +656,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
         else:
@@ -700,7 +700,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Танланг:", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
     if mycheck == "❌ Эълонни қайтадан ёзиш":
