@@ -333,16 +333,211 @@ class GoBackData(CallbackData, prefix="ortga"):
 # =========================================================
 # =========================================================
 
-class Tasdiqlash(CallbackData, prefix="tasdiqlash"):
+class TasdiqlashAndijon(CallbackData, prefix="tasdiqlash"):
     word: str
 
-class BekorQilish(CallbackData, prefix="BekorQilish"):
+class BekorQilishAndijon(CallbackData, prefix="BekorQilish"):
     word: str
 
-class Bloklash(CallbackData, prefix="Bloklash"):
+class BloklashAndijon(CallbackData, prefix="Bloklash"):
     word: str
 
-class XabarYozish(CallbackData, prefix="XabarYozish"):
+class XabarYozishAndijon(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashBuxoro(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishBuxoro(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashBuxoro(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishBuxoro(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashFargona(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishFargona(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashFargona(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishFargona(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashJizzax(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishJizzax(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashJizzax(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishJizzax(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashNamangan(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishNamangan(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashNamangan(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishNamangan(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashNavoiy(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishNavoiy(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashNavoiy(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishNavoiy(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashQashqa(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishQashqa(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashQashqa(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishQashqa(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashQoraqalpoq(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishQoraqalpoq(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashQoraqalpoq(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishQoraqalpoq(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashSamarqand(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishSamarqand(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashSamarqand(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishSamarqand(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashSirdaryo(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishSirdaryo(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashSirdaryo(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishSirdaryo(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashSurxon(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishSurxon(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashSurxon(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishSurxon(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashToshsh(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishToshsh(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashToshsh(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishToshsh(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashToshvil(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishToshvil(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashToshvil(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishToshvil(CallbackData, prefix="XabarYozish"):
+    word: str
+
+# =========================================================
+# =========================================================
+
+class TasdiqlashXorazm(CallbackData, prefix="tasdiqlash"):
+    word: str
+
+class BekorQilishXorazm(CallbackData, prefix="BekorQilish"):
+    word: str
+
+class BloklashXorazm(CallbackData, prefix="Bloklash"):
+    word: str
+
+class XabarYozishXorazm(CallbackData, prefix="XabarYozish"):
     word: str
 
 # =========================================================

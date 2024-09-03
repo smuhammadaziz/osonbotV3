@@ -23,7 +23,15 @@ from keyboards.inline.data import MavjudData, JihozlarsizData
 from keyboards.inline.data import USDData, SUMData
 from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import GoBackData
-from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
+
+from keyboards.inline.data import TasdiqlashAndijon, TasdiqlashBuxoro, TasdiqlashFargona, TasdiqlashJizzax, \
+      TasdiqlashNamangan, TasdiqlashNavoiy, TasdiqlashQashqa, TasdiqlashQoraqalpoq, TasdiqlashSamarqand, \
+      TasdiqlashSirdaryo, TasdiqlashSurxon, TasdiqlashToshsh, TasdiqlashToshvil, TasdiqlashXorazm
+from keyboards.inline.data import BekorQilishAndijon, BekorQilishBuxoro, BekorQilishFargona, \
+      BekorQilishJizzax, BekorQilishNamangan, BekorQilishNavoiy, BekorQilishQashqa, BekorQilishQoraqalpoq, \
+      BekorQilishSamarqand, BekorQilishSirdaryo, BekorQilishSurxon, BekorQilishToshsh, BekorQilishToshvil, \
+      BekorQilishXorazm
+
 from keyboards.inline.data import AdminXabarYuborish
 
 allRegionsKvartira = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
@@ -190,13 +198,75 @@ start_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                                               callback_data=StartData(word="start").pack())]
                                     ])
 
-group_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
-                                      inline_keyboard=[
-                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=Tasdiqlash(word=f"tasdiqlash").pack()), InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilish(word=f"BekorQilish").pack())],
-                                          [InlineKeyboardButton(text="Блоклаш", callback_data=Bloklash(word=f"Bloklash").pack()), InlineKeyboardButton(text="Хабар Ёзиш", callback_data=XabarYozish(word=f"XabarYozish").pack())]
-                                      ])
-
 admin = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                              inline_keyboard=[
                                   [InlineKeyboardButton(text="Barcha kanallarga xabar yuborish", callback_data=AdminXabarYuborish(word="AdminXabar").pack())]
                              ]) 
+
+# ==============================================================================
+
+andijon_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashAndijon(word=f"andijontasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishAndijon(word=f"andijonbekor").pack())]])
+
+buxoro_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashBuxoro(word=f"buxorotasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishBuxoro(word=f"buxorobekor").pack())]])
+fargona_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashFargona(word=f"fargonatasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishFargona(word=f"fargonabekor").pack())]])
+jizzax_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashJizzax(word=f"jizzaxtasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishJizzax(word=f"jizzaxbekor").pack())]])
+namangan_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashNamangan(word=f"namangantasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishNamangan(word=f"namanganbekor").pack())]])
+navoiy_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashNavoiy(word=f"navoiytasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishNavoiy(word=f"navoiybekor").pack())]])
+
+qashqa_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashQashqa(word=f"qashqatasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishQashqa(word=f"qashqabekor").pack())]])
+
+qoraqalpoq_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashQoraqalpoq(word=f"qoraqalpoqtasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishQoraqalpoq(word=f"qoraqalpoqbekor").pack())]])
+
+samarqand_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashSamarqand(word=f"samarqandtasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishSamarqand(word=f"samarqandbekor").pack())]])
+
+sirdaryo_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashSirdaryo(word=f"sirdaryotasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishSirdaryo(word=f"sirdaryobekor").pack())]])
+
+surxon_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashSurxon(word=f"surxontasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishSurxon(word=f"surxonbekor").pack())]])
+
+toshsh_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashToshsh(word=f"toshshtasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishToshsh(word=f"toshshbekor").pack())]])
+
+toshvil_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashToshvil(word=f"toshviltasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishToshvil(word=f"toshvilbekor").pack())]])
+
+xorazm_group = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
+                                      inline_keyboard=[
+                                          [InlineKeyboardButton(text="Тасдиқлаш", callback_data=TasdiqlashXorazm(word=f"xorazmtasdiqlash").pack()), 
+                                           InlineKeyboardButton(text="Бекор Қилиш", callback_data=BekorQilishXorazm(word=f"xorazmbekor").pack())]])

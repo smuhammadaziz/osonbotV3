@@ -10,7 +10,7 @@ from aiogram.types.callback_query import CallbackQuery
 from keyboards.default.JobButton import checkbtn, start
 from keyboards.default.JobButton import otkazishButton
 from keyboards.inline.HomeButton import remontButton, jihozlarButton, valyutaButton, borYoq
-from keyboards.inline.HomeButton import group_button
+from keyboards.inline.HomeButton import surxon_group
 
 from loader import bot, db
 from states.HovliState.SurxondaryoState import SurxondaryoHomeSotishHovli
@@ -30,7 +30,7 @@ from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import YevroremontData, TamirlangantData, OrtachaData, TamirsizData
 from keyboards.inline.data import MavjudData, JihozlarsizData
 from keyboards.inline.data import USDData, SUMData
-from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
+from keyboards.inline.data import TasdiqlashSurxon, BekorQilishSurxon
 
 mode = "Markdown"
 
@@ -745,7 +745,7 @@ async def check(message: types.Message, state: FSMContext):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=surxon_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
 
@@ -795,7 +795,7 @@ async def check(message: types.Message, state: FSMContext):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=surxon_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
@@ -844,7 +844,7 @@ async def check(message: types.Message, state: FSMContext):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=surxon_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
         else:
@@ -894,7 +894,7 @@ async def check(message: types.Message, state: FSMContext):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=surxon_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear()
 
@@ -904,7 +904,7 @@ async def check(message: types.Message, state: FSMContext):
         await state.clear()
 
 
-@surxon_router.callback_query(IsGroupCall(), Tasdiqlash.filter(F.word == "tasdiqlash"))
+@surxon_router.callback_query(IsGroupCall(), TasdiqlashSurxon.filter(F.word == "surxontasdiqlash"))
 async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     chat_id = str(call.message.message_id - 1)
 
@@ -932,7 +932,7 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     
 
 
-@surxon_router.callback_query(IsGroupCall(), BekorQilish.filter(F.word=="BekorQilish"))
+@surxon_router.callback_query(IsGroupCall(), BekorQilishSurxon.filter(F.word=="surxonbekor"))
 async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
 
     chat_id = str(call.message.message_id - 1)

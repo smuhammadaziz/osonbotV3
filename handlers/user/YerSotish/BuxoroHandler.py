@@ -10,7 +10,7 @@ from aiogram.types.callback_query import CallbackQuery
 from keyboards.default.JobButton import checkbtn, start
 from keyboards.default.JobButton import otkazishButton
 from keyboards.inline.HomeButton import remontButton, documentButton, valyutaButton, borYoq
-from keyboards.inline.HomeButton import group_button
+from keyboards.inline.HomeButton import buxoro_group
 
 from loader import bot, db
 from states.YerSotish.BuxoroState import BuxoroYerSotish
@@ -29,7 +29,7 @@ from keyboards.inline.data import BuxoroYerData
 from keyboards.inline.data import YoqData, BorData
 from keyboards.inline.data import DocumentHaveData, DocumentNotData
 from keyboards.inline.data import USDData, SUMData
-from keyboards.inline.data import Tasdiqlash, BekorQilish, Bloklash, XabarYozish
+from keyboards.inline.data import TasdiqlashBuxoro, BekorQilishBuxoro
 
 mode = "Markdown"
 
@@ -569,7 +569,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=buxoro_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
 
@@ -613,7 +613,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=buxoro_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
         elif data["telNumberTwo"] == "⏭️ Кейингиси":
@@ -656,7 +656,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=buxoro_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
         else:
@@ -700,7 +700,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             userId = str(message.chat.id)
             await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
 
-            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=group_button)
+            await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=buxoro_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
             await state.clear() 
     if mycheck == "❌ Эълонни қайтадан ёзиш":
@@ -709,7 +709,7 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
         await state.clear()
 
 
-@buxoro_yer_router.callback_query(IsGroupCall(), Tasdiqlash.filter(F.word == "tasdiqlash"))
+@buxoro_yer_router.callback_query(IsGroupCall(), TasdiqlashBuxoro.filter(F.word == "buxorotasdiqlash"))
 async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     chat_id = str(call.message.message_id - 1)
 
@@ -737,7 +737,7 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     
 
 
-@buxoro_yer_router.callback_query(IsGroupCall(), BekorQilish.filter(F.word=="BekorQilish"))
+@buxoro_yer_router.callback_query(IsGroupCall(), BekorQilishBuxoro.filter(F.word=="buxorobekor"))
 async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
 
     chat_id = str(call.message.message_id - 1)
