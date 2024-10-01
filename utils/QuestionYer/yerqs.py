@@ -10,7 +10,7 @@ qoraqalpoq_id = -1001933742457
 samarqand_id = -1001525881310
 sirdaryo_id = -1001397117335
 surxon_id = -1001705636608
-toshsh_id = -1001710909701
+toshsh_id = -1001916481063
 toshvil_id = -1001916481063
 xorazm_id = -1001766589776
 
